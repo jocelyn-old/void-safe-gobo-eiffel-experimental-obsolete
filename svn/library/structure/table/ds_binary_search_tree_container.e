@@ -21,8 +21,8 @@ indexing
 	library: "Gobo Eiffel Structure Library"
 	copyright: "Copyright (c) 2008, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-05-02 17:23:17 +0200 (Sat, 02 May 2009) $"
-	revision: "$Revision: 6630 $"
+	date: "$Date: 2009-05-24 12:27:24 +0200 (Sun, 24 May 2009) $"
+	revision: "$Revision: 6639 $"
 
 deferred class DS_BINARY_SEARCH_TREE_CONTAINER [G, K]
 
@@ -779,7 +779,6 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER_CURSOR} -- Cursor implementation
 			a_cursor_not_void: a_cursor /= Void
 		local
 			l_was_off: BOOLEAN
-			l_position: like found_node
 			l_position_key: detachable K
 		do
 			l_was_off := a_cursor.off
@@ -816,7 +815,6 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER_CURSOR} -- Cursor implementation
 			a_cursor_not_void: a_cursor /= Void
 		local
 			l_was_off: BOOLEAN
-			l_position: like found_node
 			l_position_key: detachable K
 		do
 			l_was_off := a_cursor.off

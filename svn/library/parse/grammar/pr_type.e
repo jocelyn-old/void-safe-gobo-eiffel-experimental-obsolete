@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Parse Library"
 	copyright: "Copyright (c) 1999-2003, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-22 15:37:59 +0200 (Wed, 22 Apr 2009) $"
-	revision: "$Revision: 6626 $"
+	date: "$Date: 2009-05-24 12:29:02 +0200 (Sun, 24 May 2009) $"
+	revision: "$Revision: 6640 $"
 
 class PR_TYPE
 
@@ -422,7 +422,11 @@ feature -- Output
 			print_indentation (indent, a_file)
 			a_file.put_string ("yyvs")
 			a_file.put_integer (id)
-			a_file.put_line (".clear_all")
+			a_file.put_string (".fill_with (l_yyvs")
+			a_file.put_integer (id)
+			a_file.put_string ("_default_item, 0, yyvs")
+			a_file.put_integer (id)
+			a_file.put_line (".upper)")
 		end
 
 	print_increment_yyvsp (nb: INTEGER; indent: INTEGER; a_file: KI_TEXT_OUTPUT_STREAM) is

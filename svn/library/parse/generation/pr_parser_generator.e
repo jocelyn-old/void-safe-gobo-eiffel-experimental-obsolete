@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Parse Library"
 	copyright: "Copyright (c) 1999-2007, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2008-10-06 09:53:14 +0200 (Mon, 06 Oct 2008) $"
-	revision: "$Revision: 6531 $"
+	date: "$Date: 2009-05-24 12:29:02 +0200 (Sun, 24 May 2009) $"
+	revision: "$Revision: 6640 $"
 
 class PR_PARSER_GENERATOR
 
@@ -432,12 +432,27 @@ feature {NONE} -- Generation
 			a_type: PR_TYPE
 			i, nb: INTEGER
 		do
+			types := machine.grammar.types
+			nb := types.count
 			a_file.put_line ("%Tyy_clear_value_stacks is")
 			a_file.put_line ("%T%T%T-- Clear objects in semantic value stacks so that")
 			a_file.put_line ("%T%T%T-- they can be collected by the garbage collector.")
+			if nb > 0 then
+				a_file.put_line ("%T%Tlocal")
+				from
+					i := 1
+				until
+					i > nb
+				loop
+					a_type := types.item (i)
+					a_file.put_string ("%T%T%Tl_yyvs")
+					a_file.put_integer (a_type.id)
+					a_file.put_string ("_default_item: ")
+					a_file.put_line (a_type.name)
+					i := i + 1
+				end
+			end
 			a_file.put_line ("%T%Tdo")
-			types := machine.grammar.types
-			nb := types.count
 			from
 				i := 1
 			until
