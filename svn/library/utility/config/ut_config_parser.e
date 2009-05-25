@@ -6,8 +6,8 @@ indexing
 
 	copyright: "Copyright (c) 2007, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-22 15:37:59 +0200 (Wed, 22 Apr 2009) $"
-	revision: "$Revision: 6626 $"
+	date: "$Date: 2009-05-02 17:23:17 +0200 (Sat, 02 May 2009) $"
+	revision: "$Revision: 6630 $"
 
 class UT_CONFIG_PARSER
 
@@ -88,10 +88,14 @@ feature {NONE} -- Implementation
 	yy_clear_value_stacks is
 			-- Clear objects in semantic value stacks so that
 			-- they can be collected by the garbage collector.
+		local
+			l_yyvs1_default_item: ANY
+			l_yyvs2_default_item: STRING
+			l_yyvs3_default_item: BOOLEAN
 		do
-			yyvs1.clear_all
-			yyvs2.clear_all
-			yyvs3.clear_all
+			yyvs1.fill_with (l_yyvs1_default_item, 0, yyvs1.upper)
+			yyvs2.fill_with (l_yyvs2_default_item, 0, yyvs2.upper)
+			yyvs3.fill_with (l_yyvs3_default_item, 0, yyvs3.upper)
 		end
 
 	yy_push_last_value (yychar1: INTEGER) is

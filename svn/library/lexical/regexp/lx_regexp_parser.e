@@ -98,12 +98,18 @@ feature {NONE} -- Implementation
 	yy_clear_value_stacks is
 			-- Clear objects in semantic value stacks so that
 			-- they can be collected by the garbage collector.
+		local
+			l_yyvs1_default_item: ANY
+			l_yyvs2_default_item: INTEGER
+			l_yyvs3_default_item: LX_SYMBOL_CLASS
+			l_yyvs4_default_item: STRING
+			l_yyvs5_default_item: LX_NFA
 		do
-			yyvs1.clear_all
-			yyvs2.clear_all
-			yyvs3.clear_all
-			yyvs4.clear_all
-			yyvs5.clear_all
+			yyvs1.fill_with (l_yyvs1_default_item, 0, yyvs1.upper)
+			yyvs2.fill_with (l_yyvs2_default_item, 0, yyvs2.upper)
+			yyvs3.fill_with (l_yyvs3_default_item, 0, yyvs3.upper)
+			yyvs4.fill_with (l_yyvs4_default_item, 0, yyvs4.upper)
+			yyvs5.fill_with (l_yyvs5_default_item, 0, yyvs5.upper)
 		end
 
 	yy_push_last_value (yychar1: INTEGER) is

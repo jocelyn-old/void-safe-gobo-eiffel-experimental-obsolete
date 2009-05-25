@@ -133,18 +133,30 @@ feature {NONE} -- Implementation
 	yy_clear_value_stacks is
 			-- Clear objects in semantic value stacks so that
 			-- they can be collected by the garbage collector.
+		local
+			l_yyvs1_default_item: ANY
+			l_yyvs2_default_item: XM_EIFFEL_PARSER_NAME
+			l_yyvs3_default_item: DS_HASH_SET [XM_EIFFEL_PARSER_NAME]
+			l_yyvs4_default_item: STRING
+			l_yyvs5_default_item: XM_DTD_EXTERNAL_ID
+			l_yyvs6_default_item: XM_DTD_ELEMENT_CONTENT
+			l_yyvs7_default_item: XM_DTD_ATTRIBUTE_CONTENT
+			l_yyvs8_default_item: DS_BILINKED_LIST [XM_DTD_ATTRIBUTE_CONTENT]
+			l_yyvs9_default_item: DS_BILINKED_LIST [STRING]
+			l_yyvs10_default_item: BOOLEAN
+			l_yyvs11_default_item: XM_EIFFEL_DECLARATION
 		do
-			yyvs1.clear_all
-			yyvs2.clear_all
-			yyvs3.clear_all
-			yyvs4.clear_all
-			yyvs5.clear_all
-			yyvs6.clear_all
-			yyvs7.clear_all
-			yyvs8.clear_all
-			yyvs9.clear_all
-			yyvs10.clear_all
-			yyvs11.clear_all
+			yyvs1.fill_with (l_yyvs1_default_item, 0, yyvs1.upper)
+			yyvs2.fill_with (l_yyvs2_default_item, 0, yyvs2.upper)
+			yyvs3.fill_with (l_yyvs3_default_item, 0, yyvs3.upper)
+			yyvs4.fill_with (l_yyvs4_default_item, 0, yyvs4.upper)
+			yyvs5.fill_with (l_yyvs5_default_item, 0, yyvs5.upper)
+			yyvs6.fill_with (l_yyvs6_default_item, 0, yyvs6.upper)
+			yyvs7.fill_with (l_yyvs7_default_item, 0, yyvs7.upper)
+			yyvs8.fill_with (l_yyvs8_default_item, 0, yyvs8.upper)
+			yyvs9.fill_with (l_yyvs9_default_item, 0, yyvs9.upper)
+			yyvs10.fill_with (l_yyvs10_default_item, 0, yyvs10.upper)
+			yyvs11.fill_with (l_yyvs11_default_item, 0, yyvs11.upper)
 		end
 
 	yy_push_last_value (yychar1: INTEGER) is
