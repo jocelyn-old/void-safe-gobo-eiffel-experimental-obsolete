@@ -431,6 +431,7 @@ feature {NONE} -- Generation
 			types: DS_ARRAYED_LIST [PR_TYPE]
 			a_type: PR_TYPE
 			i, nb: INTEGER
+			l_basic_type: ?PR_BASIC_TYPE
 		do
 			types := machine.grammar.types
 			nb := types.count
@@ -448,6 +449,11 @@ feature {NONE} -- Generation
 					a_file.put_string ("%T%T%Tl_yyvs")
 					a_file.put_integer (a_type.id)
 					a_file.put_string ("_default_item: ")
+					l_basic_type ?= a_type
+					if l_basic_type = Void then
+						a_file.put_string ("?")
+					end
+
 					a_file.put_line (a_type.name)
 					i := i + 1
 				end

@@ -99,11 +99,11 @@ feature {NONE} -- Implementation
 			-- Clear objects in semantic value stacks so that
 			-- they can be collected by the garbage collector.
 		local
-			l_yyvs1_default_item: ANY
+			l_yyvs1_default_item: ?ANY
 			l_yyvs2_default_item: INTEGER
-			l_yyvs3_default_item: LX_SYMBOL_CLASS
-			l_yyvs4_default_item: STRING
-			l_yyvs5_default_item: LX_NFA
+			l_yyvs3_default_item: ?LX_SYMBOL_CLASS
+			l_yyvs4_default_item: ?STRING
+			l_yyvs5_default_item: ?LX_NFA
 		do
 			yyvs1.fill_with (l_yyvs1_default_item, 0, yyvs1.upper)
 			yyvs2.fill_with (l_yyvs2_default_item, 0, yyvs2.upper)

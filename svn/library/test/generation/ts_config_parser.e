@@ -85,10 +85,10 @@ feature {NONE} -- Implementation
 			-- Clear objects in semantic value stacks so that
 			-- they can be collected by the garbage collector.
 		local
-			l_yyvs1_default_item: ANY
-			l_yyvs2_default_item: ET_IDENTIFIER
-			l_yyvs3_default_item: TS_CLUSTER
-			l_yyvs4_default_item: DS_ARRAYED_LIST [TS_CLUSTER]
+			l_yyvs1_default_item: ?ANY
+			l_yyvs2_default_item: ?ET_IDENTIFIER
+			l_yyvs3_default_item: ?TS_CLUSTER
+			l_yyvs4_default_item: ?DS_ARRAYED_LIST [TS_CLUSTER]
 		do
 			yyvs1.fill_with (l_yyvs1_default_item, 0, yyvs1.upper)
 			yyvs2.fill_with (l_yyvs2_default_item, 0, yyvs2.upper)
