@@ -1,7 +1,7 @@
 .svn/
 old/
 EIFGENs/
-override/generated/
+override/generated/example
 svn/example/
 svn/doc/
 svn/bin/
