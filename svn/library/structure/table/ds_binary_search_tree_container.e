@@ -848,7 +848,6 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER_CURSOR} -- Cursor implementation
 feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Cursor implementation
 
 	predecessor_for_cursor (v: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]): ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K] is
-
 			-- Predecessor of `v' if it exists, Void otherwise
 			-- (Performance: O(height).)
 		require
@@ -1919,7 +1918,7 @@ feature {NONE} -- Basic operation
 					check l_found_node /= Void end
 					l_stop := False
 				invariant
-					result_not_void: l_found_node /= Void
+					result_not_void: found_node /= Void
 				until
 					l_stop
 				loop

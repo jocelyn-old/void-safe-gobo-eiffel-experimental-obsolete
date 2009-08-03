@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Kernel Library"
 	copyright: "Copyright (c) 2001-2008, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-03-02 18:28:36 +0100 (Mon, 02 Mar 2009) $"
-	revision: "$Revision: 6595 $"
+	date: "$Date: 2009-06-15 12:07:38 +0200 (Mon, 15 Jun 2009) $"
+	revision: "$Revision: 6641 $"
 
 deferred class KI_FILE_SYSTEM
 
@@ -452,6 +452,65 @@ feature -- Pathname handling
 			Result := same_canonical_pathnames (absolute_pathname (a_pathname1), absolute_pathname (a_pathname2))
 		ensure
 			definition: Result = same_canonical_pathnames (absolute_pathname (a_pathname1), absolute_pathname (a_pathname2))
+		end
+
+	is_subpathname (a_pathname1, a_pathname2: STRING): BOOLEAN is
+			-- Is `a_pathname1' considered as a subpathname of `a_pathname2'
+			-- when viewed from the current file system?
+			-- (`a_pathname1' and `a_pathname2' should follow
+			-- the pathname convention of the underlying
+			-- platform. For pathname conversion use
+			-- KI_FILE_SYSTEM.pathname_from_file_system.)
+			--
+			-- Note that pathnames may be considered equal when viewed
+			-- from one file system but not from another. For example
+			-- Windows is case-insensitive, but Unix is case-sensitive.
+		require
+			a_pathname1_not_void: a_pathname1 /= Void
+			a_pathname2_not_void: a_pathname2 /= Void
+		deferred
+		end
+
+	is_canonical_subpathname (a_pathname1, a_pathname2: STRING): BOOLEAN is
+			-- Is the canonical version of `a_pathname1' considered as
+			-- a subpathname of the canonical version of `a_pathname2'
+			-- when viewed from the current file system?
+			-- (`a_pathname1' and `a_pathname2' should follow
+			-- the pathname convention of the underlying
+			-- platform. For pathname conversion use
+			-- KI_FILE_SYSTEM.pathname_from_file_system.)
+			--
+			-- Note that pathnames may be considered equal when viewed
+			-- from one file system but not from another. For example
+			-- Windows is case-insensitive, but Unix is case-sensitive.
+		require
+			a_pathname1_not_void: a_pathname1 /= Void
+			a_pathname2_not_void: a_pathname2 /= Void
+		do
+			Result := is_subpathname (canonical_pathname (a_pathname1), canonical_pathname (a_pathname2))
+		ensure
+			definition: Result = is_subpathname (canonical_pathname (a_pathname1), canonical_pathname (a_pathname2))
+		end
+
+	is_canonical_absolute_subpathname (a_pathname1, a_pathname2: STRING): BOOLEAN is
+			-- Is the canonical absolute version of `a_pathname1' considered as
+			-- a subpathname of the canonical absolute version of `a_pathname2'
+			-- when viewed from the current file system?
+			-- (`a_pathname1' and `a_pathname2' should follow
+			-- the pathname convention of the underlying
+			-- platform. For pathname conversion use
+			-- KI_FILE_SYSTEM.pathname_from_file_system.)
+			--
+			-- Note that pathnames may be considered equal when viewed
+			-- from one file system but not from another. For example
+			-- Windows is case-insensitive, but Unix is case-sensitive.
+		require
+			a_pathname1_not_void: a_pathname1 /= Void
+			a_pathname2_not_void: a_pathname2 /= Void
+		do
+			Result := is_canonical_subpathname (absolute_pathname (a_pathname1), absolute_pathname (a_pathname2))
+		ensure
+			definition: Result = is_canonical_subpathname (absolute_pathname (a_pathname1), absolute_pathname (a_pathname2))
 		end
 
 	basename (a_pathname: STRING): STRING is
