@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Argument Library"
 	copyright: "Copyright (c) 2006, Bernd Schoeller and others"
 	license: "MIT License"
-	date: "$Date: 2008-10-05 12:21:37 +0200 (Sun, 05 Oct 2008) $"
-	revision: "$Revision: 6530 $"
+	date: "$Date: 2009-06-17 09:52:38 +0200 (Wed, 17 Jun 2009) $"
+	revision: "$Revision: 6643 $"
 
 class AP_DISPLAY_HELP_FLAG
 
@@ -41,20 +41,20 @@ feature -- Constants
 			-- application description
 
 	text_below_description: STRING is "%N"
-			-- Text that separates the application description and the 
+			-- Text that separates the application description and the
 			-- list of options
 
 	text_before_options: STRING is "%NOptions:%N"
 			-- Text that introduces the options
 
 	option_description_indentation: INTEGER is 1
-			-- Number of characters for the indentation of the option 
+			-- Number of characters for the indentation of the option
 			-- text
 
 feature {AP_PARSER} -- Parser Interface
 
 	record_occurrence (a_parser: AP_PARSER) is
-			-- The option was found during parsing. Display the help text and 
+			-- The option was found during parsing. Display the help text and
 			-- terminate the application.
 		do
 			display_help (a_parser)
@@ -131,7 +131,7 @@ feature -- Text Generation
 		end
 
 	full_usage_instruction (a_parser: AP_PARSER): STRING is
-			-- Usage instruction for the programs standard and 
+			-- Usage instruction for the programs standard and
 			-- alternative options
 		require
 			a_parser_not_void: a_parser /= Void
@@ -207,7 +207,7 @@ feature {NONE} -- Implementation
 			application_name: STRING
 		do
 			create args.make_empty
-			args.append_string (a_list.introduction_option.name)
+			args.append_string (a_list.introduction_option.example)
 			args.append_character (' ')
 			from
 				a_list.start
@@ -235,8 +235,8 @@ feature {NONE} -- Implementation
 		end
 
 	option_help_text (an_option: AP_OPTION; indent: INTEGER): STRING is
-			-- Help text of `an_option', calculated from the option_names 
-			-- and the description, assuming an indention of `indent' is 
+			-- Help text of `an_option', calculated from the option_names
+			-- and the description, assuming an indention of `indent' is
 			-- required for correct formating
 		require
 			an_option_not_void: an_option /= Void
