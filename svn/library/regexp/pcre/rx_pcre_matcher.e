@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Regexp Library"
 	copyright: "Copyright (c) 2001-2002, Harald Erdbruegger and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-23 16:03:08 +0200 (Thu, 23 Apr 2009) $"
-	revision: "$Revision: 6627 $"
+	date: "$Date: 2009-06-16 23:18:58 +0200 (Tue, 16 Jun 2009) $"
+	revision: "$Revision: 6642 $"
 
 class RX_PCRE_MATCHER
 
@@ -137,6 +137,31 @@ feature -- Matching
 		do
 			subject_start := a_from
 			match_it (a_subject, a_from, a_to)
+		end
+
+	match_unbounded_substring (a_subject: STRING; a_from, a_to: INTEGER) is
+			-- Try to match the substring of `a_subject' between
+			-- positions `a_from' and `a_to' with the current pattern.
+			-- Make result available in `has_matched' and the various
+			-- `*_captured_*' features.
+			--
+			-- Note that if `a_from' is not 1, then ^ will not match at position `a_from'.
+			-- And if `a_to' is not `a_subject.count' then $ will not match at position `a_to'.
+		local
+			l_old_bol: BOOLEAN
+			l_old_eol: BOOLEAN
+		do
+			l_old_bol := is_bol
+			l_old_eol := is_eol
+			if a_from /= 1 then
+				is_bol := False
+			end
+			if a_to /= a_subject.count then
+				is_eol := False
+			end
+			match_substring (a_subject, a_from, a_to)
+			is_bol := l_old_bol
+			is_eol := l_old_eol
 		end
 
 	first_match is

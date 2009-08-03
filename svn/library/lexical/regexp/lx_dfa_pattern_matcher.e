@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Lexical Library"
 	copyright: "Copyright (c) 2001, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2008-10-05 12:21:37 +0200 (Sun, 05 Oct 2008) $"
-	revision: "$Revision: 6530 $"
+	date: "$Date: 2009-06-16 23:18:58 +0200 (Tue, 16 Jun 2009) $"
+	revision: "$Revision: 6642 $"
 
 deferred class LX_DFA_PATTERN_MATCHER
 
@@ -127,6 +127,18 @@ feature -- Matching
 					i := i + 1
 				end
 			end
+		end
+
+	match_unbounded_substring (a_subject: STRING; a_from, a_to: INTEGER) is
+			-- Try to match the substring of `a_subject' between
+			-- positions `a_from' and `a_to' with the current pattern.
+			-- Make result available in `has_matched' and the various
+			-- `*_captured_*' features.
+			--
+			-- Note that if `a_from' is not 1, then ^ will not match at position `a_from'.
+			-- And if `a_to' is not `a_subject.count' then $ will not match at position `a_to'.
+		do
+			match_substring (a_subject, a_from, a_to)
 		end
 
 feature -- Resetting

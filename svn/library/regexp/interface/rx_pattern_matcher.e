@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Regexp Library"
 	copyright: "Copyright (c) 2002, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-22 15:37:59 +0200 (Wed, 22 Apr 2009) $"
-	revision: "$Revision: 6626 $"
+	date: "$Date: 2009-06-16 23:18:58 +0200 (Tue, 16 Jun 2009) $"
+	revision: "$Revision: 6642 $"
 
 deferred class RX_PATTERN_MATCHER
 
@@ -282,6 +282,28 @@ feature -- Matching
 			-- positions `a_from' and `a_to' with the current pattern.
 			-- Make result available in `has_matched' and the various
 			-- `*_captured_*' features.
+		require
+			compiled: is_compiled
+			a_subject_not_void: a_subject /= Void
+			a_from_large_enough: a_from >= 1
+			a_to_small_enough: a_to <= a_subject.count
+			valid_bounds: a_from <= a_to + 1
+		deferred
+		ensure
+			is_matching: is_matching
+			subject_set: subject = a_subject
+			subject_start_set: subject_start = a_from
+			subject_end_set: subject_end = a_to
+		end
+
+	match_unbounded_substring (a_subject: STRING; a_from, a_to: INTEGER) is
+			-- Try to match the substring of `a_subject' between
+			-- positions `a_from' and `a_to' with the current pattern.
+			-- Make result available in `has_matched' and the various
+			-- `*_captured_*' features.
+			--
+			-- Note that if `a_from' is not 1, then ^ will not match at position `a_from'.
+			-- And if `a_to' is not `a_subject.count' then $ will not match at position `a_to'.
 		require
 			compiled: is_compiled
 			a_subject_not_void: a_subject /= Void

@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Regexp Library"
 	copyright: "Copyright (c) 2001-2008, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2008-10-06 09:53:14 +0200 (Mon, 06 Oct 2008) $"
-	revision: "$Revision: 6531 $"
+	date: "$Date: 2009-06-16 23:18:58 +0200 (Tue, 16 Jun 2009) $"
+	revision: "$Revision: 6642 $"
 
 deferred class RX_REGULAR_EXPRESSION
 
@@ -175,15 +175,36 @@ feature -- Replacement
 			a_string_same_type: ANY_.same_types (a_string, a_replacement)
 		local
 			old_subject_start: INTEGER
+			l_captured_start_position: INTEGER
+			l_captured_end_position: INTEGER
+			l_next_start: INTEGER
 		do
 			old_subject_start := subject_start
 			from
 			until
 				not has_matched
 			loop
-				STRING_.append_substring_to_string (a_string, subject, subject_start, captured_start_position (0) - 1)
+				l_captured_start_position := captured_start_position (0)
+				l_captured_end_position := captured_end_position (0)
+				STRING_.append_substring_to_string (a_string, subject, subject_start, l_captured_start_position - 1)
 				append_replacement_to_string (a_string, a_replacement)
-				match_substring (subject, captured_end_position (0) + 1, subject_end)
+				if l_captured_start_position > l_captured_end_position then
+						-- Make sure that we move to the next character, even
+						-- when an empty string was matched.
+					if l_captured_start_position <= subject_end then
+						a_string.append_character (subject.item (l_captured_start_position))
+						l_next_start := l_captured_start_position + 1
+						match_unbounded_substring (subject, l_next_start, subject_end)
+					else
+							-- We already went past the end of the subject.
+							-- There is nothing to be matched anymore.
+						match_count := 0
+						subject_start := subject_end + 1
+					end
+				else
+					l_next_start := l_captured_end_position + 1
+					match_unbounded_substring (subject, l_next_start, subject_end)
+				end
 			end
 			STRING_.append_substring_to_string (a_string, subject, subject_start, subject_end)
 			subject_start := old_subject_start
@@ -237,7 +258,7 @@ feature -- Splitting
 					end
 					i := k + 2
 					if i <= subject_end then
-						match_substring (subject, i, subject_end)
+						match_unbounded_substring (subject, i, subject_end)
 					else
 							-- We reached the end of the subject.
 							-- Stop searching for matching substring,
@@ -268,7 +289,7 @@ feature -- Splitting
 					end
 					l_last_char_matched := k
 					i := k + 1
-					match_substring (subject, i, subject_end)
+					match_unbounded_substring (subject, i, subject_end)
 				end
 			end
 			if i <= subject_end + 1 then
