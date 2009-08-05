@@ -5,10 +5,10 @@ indexing
 		"Cursors for in-order traversal of sets using binary search tree algorithms"
 
 	library: "Gobo Eiffel Structure Library"
-	copyright: "Copyright (c) 2008, Daniel Tuser and others"
+	copyright: "Copyright (c) 2008-2009, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-29 11:04:25 +0200 (Wed, 29 Apr 2009) $"
-	revision: "$Revision: 6628 $"
+	date: "$Date: 2009-07-15 16:38:52 +0200 (Wed, 15 Jul 2009) $"
+	revision: "$Revision: 6654 $"
 
 class DS_BINARY_SEARCH_TREE_SET_CURSOR [G]
 
@@ -28,6 +28,7 @@ inherit
 			go_at_or_after_key as go_at_or_after
 		redefine
 			container,
+			position,
 			next_cursor
 		end
 
@@ -39,6 +40,11 @@ feature -- Access
 
 	container: DS_BINARY_SEARCH_TREE_SET [G]
 			-- Binary search tree set traversed
+
+feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Access
+
+	position: ?DS_BINARY_SEARCH_TREE_SET_NODE [G]
+			-- Current position in the underlying tree
 
 feature {DS_BILINEAR} -- Implementation
 

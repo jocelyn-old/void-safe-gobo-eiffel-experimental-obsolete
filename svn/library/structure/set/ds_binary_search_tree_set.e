@@ -11,8 +11,8 @@ indexing
 	library: "Gobo Eiffel Structure Library"
 	copyright: "Copyright (c) 2008, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-22 15:37:59 +0200 (Wed, 22 Apr 2009) $"
-	revision: "$Revision: 6626 $"
+	date: "$Date: 2009-07-08 01:27:31 +0200 (Wed, 08 Jul 2009) $"
+	revision: "$Revision: 6649 $"
 
 class DS_BINARY_SEARCH_TREE_SET [G]
 
@@ -79,8 +79,7 @@ feature -- Status report
 		do
 			if not is_empty then
 				l_first_node := first_node
-				check l_first_node /= Void end -- implied by `not is_empty'
-				Result := l_first_node.item = Void
+				Result := l_first_node /= Void and then l_first_node.item = Void
 			end
 		end
 
@@ -247,17 +246,16 @@ feature -- Duplication
 	copy (other: like Current) is
 			-- Copy `other' to current.
 		local
-			l_old_cursor_position: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, G]
 			l_other_node: like root_node
 			l_internal_cursor: like detachable_internal_cursor
 		do
 			if other /= Current then
 				l_internal_cursor := internal_cursor
-				if not l_internal_cursor.off then
-					l_old_cursor_position := l_internal_cursor.position
+				if l_internal_cursor = Void then
+					set_internal_cursor (new_cursor)
 				end
-				wipe_out
 				equality_tester := other.equality_tester
+				wipe_out
 				if not other.is_empty then
 					from
 						l_other_node := other.first_node
@@ -265,11 +263,6 @@ feature -- Duplication
 						l_other_node = Void
 					loop
 						put_new (l_other_node.item)
-						if l_old_cursor_position /= Void then
-							if l_old_cursor_position.item = l_other_node.item then
-								l_internal_cursor.set_position (l_old_cursor_position)
-							end
-						end
 						l_other_node := successor (l_other_node)
 					end
 				end
@@ -307,8 +300,9 @@ feature -- Basic operations
 			-- (Use `equality_tester''s comparison criterion
 			-- if not void, use `=' criterion otherwise.)
 		local
-			l_node: like root_node
+			l_cursor: like new_cursor
 			l_item: G
+			l_node: like root_node
 		do
 			if other = Current then
 				move_all_cursors_after
@@ -317,15 +311,18 @@ feature -- Basic operations
 			else
 				move_all_cursors_after
 				from
-					l_node := first_node
+					l_cursor := new_cursor
+					l_cursor.start
 				until
-					l_node = Void
+					l_cursor.after
 				loop
-					l_item := l_node.item
-					l_node := successor (l_node)
+					l_item := l_cursor.item
 					if not other.has (l_item) then
+						l_node := l_cursor.position
 						check l_node /= Void end -- implied by ... ?
 						remove_node (l_node)
+					else
+						l_cursor.forth
 					end
 				end
 			end
@@ -336,8 +333,9 @@ feature -- Basic operations
 			-- (Use `equality_tester''s comparison criterion
 			-- if not void, use `=' criterion otherwise.)
 		local
-			l_node: like root_node
+			l_cursor: like new_cursor
 			l_item: G
+			l_node: like root_node
 		do
 			if other.is_empty then
 				move_all_cursors_after
@@ -346,15 +344,18 @@ feature -- Basic operations
 			else
 				move_all_cursors_after
 				from
-					l_node := first_node
+					l_cursor := new_cursor
+					l_cursor.start
 				until
-					l_node = Void
+					l_cursor.after
 				loop
-					l_item := l_node.item
-					l_node := successor (l_node)
+					l_item := l_cursor.item
 					if other.has (l_item) then
+						l_node := l_cursor.position
 						check l_node /= Void end -- implied by ... ?
 						remove_node (l_node)
+					else
+						l_cursor.forth
 					end
 				end
 			end

@@ -8,10 +8,10 @@ indexing
 		It is guaranteed that `height' is always about `log_2 (count)'.
 	]"
 	library: "Gobo Eiffel Structure Library"
-	copyright: "Copyright (c) 2008, Daniel Tuser and others"
+	copyright: "Copyright (c) 2008-2009, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-04-22 15:37:59 +0200 (Wed, 22 Apr 2009) $"
-	revision: "$Revision: 6626 $"
+	date: "$Date: 2009-07-15 16:38:52 +0200 (Wed, 15 Jul 2009) $"
+	revision: "$Revision: 6654 $"
 
 class DS_RED_BLACK_TREE [G, K]
 
@@ -23,6 +23,7 @@ inherit
 			on_root_node_removed,
 			on_node_removed
 		redefine
+			new_cursor,
 			root_node
 		end
 
@@ -39,6 +40,14 @@ inherit
 create
 
 	make
+
+feature -- Access
+
+	new_cursor: DS_RED_BLACK_TREE_CURSOR [G, K] is
+			-- New external cursor
+		do
+			create Result.make (Current)
+		end
 
 feature {NONE} -- Implementation
 

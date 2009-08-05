@@ -2,29 +2,26 @@ indexing
 
 	description:
 
-		"Cursors for in-order traversal of binary search trees"
+		"Cursors for in-order traversal of avl trees"
 
 	library: "Gobo Eiffel Structure Library"
-	copyright: "Copyright (c) 2008-2009, Daniel Tuser and others"
+	copyright: "Copyright (c) 2009, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-07-15 16:38:52 +0200 (Wed, 15 Jul 2009) $"
-	revision: "$Revision: 6654 $"
+	date: "$Date: 2008-09-28 20:40:54 +0200 (Sun, 28 Sep 2008) $"
+	revision: "$Revision: 6526 $"
 
-class DS_BINARY_SEARCH_TREE_CURSOR [G, K]
+class DS_AVL_TREE_CURSOR [G, K]
 
 inherit
 
-	DS_BILINEAR_TABLE_CURSOR [G, K]
-		undefine
-			item
+	DS_AVL_TREE_CONTAINER_CURSOR [G, K]
 		redefine
+			container,
+			position,
 			next_cursor
 		end
 
-	DS_BINARY_SEARCH_TREE_CONTAINER_CURSOR [G, K]
-		export
-			{ANY}
-				key
+	DS_BINARY_SEARCH_TREE_CURSOR [G, K]
 		redefine
 			container,
 			position,
@@ -37,17 +34,17 @@ create
 
 feature -- Access
 
-	container: DS_BINARY_SEARCH_TREE [G, K]
+	container: DS_AVL_TREE [G, K]
 			-- Binary search tree traversed
 
 feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Access
 
-	position: ?DS_BINARY_SEARCH_TREE_NODE [G, K]
+	position: ?DS_AVL_TREE_NODE [G, K]
 			-- Current position in the underlying tree
 
 feature {DS_BILINEAR} -- Implementation
 
-	next_cursor: ?DS_BINARY_SEARCH_TREE_CURSOR [G, K]
+	next_cursor: ?DS_AVL_TREE_CURSOR [G, K]
 			-- Next cursor
 			-- (Used by `container' to keep track of traversing
 			-- cursors (i.e. cursors associated with `container'

@@ -19,10 +19,10 @@ indexing
 		the binary search tree container classes.
 	]"
 	library: "Gobo Eiffel Structure Library"
-	copyright: "Copyright (c) 2008, Daniel Tuser and others"
+	copyright: "Copyright (c) 2008-2009, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2009-05-24 12:27:24 +0200 (Sun, 24 May 2009) $"
-	revision: "$Revision: 6639 $"
+	date: "$Date: 2009-07-15 16:38:52 +0200 (Wed, 15 Jul 2009) $"
+	revision: "$Revision: 6654 $"
 
 deferred class DS_BINARY_SEARCH_TREE_CONTAINER [G, K]
 
@@ -343,7 +343,7 @@ feature {NONE} -- Status report
 
 feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Status report
 
-	is_node_in_tree (a_node: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]): BOOLEAN is
+	is_node_in_tree (a_node: like root_node): BOOLEAN is
 			-- Is `a_node' in current tree?
 		require
 			a_node_not_void: a_node /= Void
@@ -353,14 +353,14 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Status report
 			end
 		end
 
-	are_nodes_in_same_tree (a_node_1, a_node_2: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]): BOOLEAN is
+	are_nodes_in_same_tree (a_node_1, a_node_2: like root_node): BOOLEAN is
 			-- Has `a_node_1' the same `root_node' as `a_node_2'?
 		require
 			a_node_1_not_void: a_node_1 /= Void
 			a_node_2_not_void: a_node_2 /= Void
 		local
-			l_node: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
-			l_root_node_1, l_root_node_2: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_node: like root_node
+			l_root_node_1, l_root_node_2: like root_node
 		do
 			from
 				l_root_node_1 := a_node_1
@@ -502,7 +502,7 @@ feature {DS_CURSOR} -- Cursor implementation
 	cursor_item (a_cursor: like new_cursor): G is
 			-- Item at `a_cursor' position.
 		local
-			l_position: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_position: like root_node
 		do
 			l_position := a_cursor.position
 			check l_position /= Void end -- implied by `a_cursor_not_off'
@@ -514,7 +514,7 @@ feature {DS_CURSOR} -- Cursor implementation
 		require
 			a_cursor_not_void: a_cursor /= Void
 		local
-			l_position: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_position: like root_node
 		do
 			l_position := a_cursor.position
 			check l_position /= Void end -- implied by ... ?
@@ -584,14 +584,14 @@ feature {DS_LINEAR_CURSOR} -- Cursor implementation
 	cursor_forth (a_cursor: like new_cursor) is
 			-- Move `a_cursor' to next position.
 		local
-			l_position: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_position: like root_node
 			l_has_cursor, l_add_cursor: BOOLEAN
 		do
 			l_position := a_cursor.position
 			l_has_cursor := l_position /= Void
+			l_add_cursor := True
 			if a_cursor.before then
 				l_position := first_node
-				l_add_cursor := True
 			else
 				check l_position /= Void end
 				l_position := successor_for_cursor (l_position)
@@ -696,7 +696,7 @@ feature {DS_BILINEAR_CURSOR} -- Cursor implementation
 	cursor_back (a_cursor: like new_cursor) is
 			-- Move `a_cursor' to previous position.
 		local
-			l_position: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_position: like root_node
 			l_has_cursor, l_add_cursor: BOOLEAN
 			l_equality_tester: like equality_tester
 		do
@@ -847,14 +847,14 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER_CURSOR} -- Cursor implementation
 
 feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Cursor implementation
 
-	predecessor_for_cursor (v: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]): ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K] is
+	predecessor_for_cursor (v: like root_node): like root_node is
 			-- Predecessor of `v' if it exists, Void otherwise
 			-- (Performance: O(height).)
 		require
 			v_not_void: v /= Void
 			v_is_in_tree: is_node_in_tree (v)
 		local
-			l_child, l_parent: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_child, l_parent: like root_node
 		do
 			l_child := v.left_child
 			if l_child /= Void then
@@ -895,13 +895,13 @@ feature {DS_BINARY_SEARCH_TREE_CONTAINER} -- Cursor implementation
 			predecessor_is_in_tree: Result /= Void implies is_node_in_tree (Result)
 		end
 
-	successor_for_cursor (v: DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]): ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K] is
+	successor_for_cursor (v: like root_node): like root_node is
 			-- Successor of `v' if it exists, Void otherwise
 			-- (Performance: O(height).)
 		require
 			v_not_void: v /= Void
 		local
-			l_child, l_parent: ?DS_BINARY_SEARCH_TREE_CONTAINER_NODE [G, K]
+			l_child, l_parent: like root_node
 		do
 			l_child := v.right_child
 			if l_child /= Void then
@@ -1386,7 +1386,7 @@ feature {NONE} -- Removal
 			-- Remove `a_node' from the tree.
 		require
 			a_node_not_void: a_node /= Void
-			a_node_is_from_tree: is_node_in_tree (a_node)
+			a_node_is_in_tree: is_node_in_tree (a_node)
 		local
 			l_in_order_successor: like root_node
 			l_old_cursor_position: like root_node
@@ -1848,37 +1848,42 @@ feature {NONE} -- Basic operation
 			-- neither less nor greater than `a_key'.
 			-- (Performance: O(height).)
 		local
-			l_equality: BOOLEAN
 			l_found_node: like root_node
+			l_key_comparator: like key_comparator
+			l_equality: BOOLEAN
 		do
+				-- Accessing references via local variables is faster. As the
+				-- performance of the binary search trees heavily depends on
+				-- this routine, we can optimize it by accessing `found_node'
+				-- and `key_comparator' via local variables.
+			l_found_node := found_node
+			l_key_comparator := key_comparator
 			if a_key = Void then
 				if {l_first_node: like first_node} first_node and then l_first_node.key = Void then
-					found_node := l_first_node
+					l_found_node := l_first_node
 				else
-					found_node := Void
+					l_found_node := Void
 				end
 			else
-				l_found_node := found_node
-				if l_found_node = Void or else (l_found_node.key = Void) or else not key_comparator.order_equal (a_key, l_found_node.key) then
+				if l_found_node = Void or else (l_found_node.key = Void) or else not l_key_comparator.order_equal (a_key, l_found_node.key) then
 					from
-						found_node := root_node
-						l_found_node := found_node
+						l_found_node := root_node
 					until
 						l_found_node = Void or else l_equality
 					loop
 						if l_found_node.key = Void then
-							found_node := l_found_node.right_child
-						elseif key_comparator.less_than (a_key, l_found_node.key) then
-							found_node := l_found_node.left_child
-						elseif key_comparator.greater_than (a_key, l_found_node.key) then
-							found_node := l_found_node.right_child
+							l_found_node := l_found_node.right_child
+						elseif l_key_comparator.less_than (a_key, l_found_node.key) then
+							l_found_node := l_found_node.left_child
+						elseif l_key_comparator.greater_than (a_key, l_found_node.key) then
+							l_found_node := l_found_node.right_child
 						else
 							l_equality := True
 						end
-						l_found_node := found_node
 					end
 				end
 			end
+			found_node := l_found_node
 		end
 
 	search_insert_position (a_key: K) is
@@ -1896,15 +1901,23 @@ feature {NONE} -- Basic operation
 		require
 			tree_not_empty: not is_empty
 		local
+			l_found_node: like root_node
+			l_key_comparator: like key_comparator
 			l_stop: BOOLEAN
-			l_first_node: like first_node
-			l_found_node: like found_node
 		do
+				-- Accessing references via local variables is faster. As the
+				-- performance of the binary search trees heavily depends on
+				-- this routine, we can optimize it by accessing `found_node'
+				-- and `key_comparator' via local variables.
+			l_found_node := found_node
+			l_key_comparator := key_comparator
 			if a_key = Void then
-				l_first_node := first_node
-				check l_first_node /= Void end -- implied by `tree_not_empty'
-				found_node := l_first_node
-				if l_first_node.key = Void then
+				l_found_node := first_node
+				check
+						-- tree_not_empty implies first_node_attached
+					first_node_attached: l_found_node /= Void
+				end
+				if l_found_node.key = Void then
 					exact_insert_position_found := True
 				else
 					exact_insert_position_found := False
@@ -1913,44 +1926,46 @@ feature {NONE} -- Basic operation
 			else
 				exact_insert_position_found := False
 				from
-					found_node := root_node
-					l_found_node := found_node
-					check l_found_node /= Void end
+					l_found_node := root_node
+--					check l_found_node /= Void end
 					l_stop := False
 				invariant
-					result_not_void: found_node /= Void
+					result_not_void: l_found_node /= Void
 				until
 					l_stop
 				loop
-					check l_found_node /= Void end -- implied by loop's invariant `result_not_void'
+					check
+							-- implied by loop's invariant `result_not_void'
+						l_found_node /= Void
+					end
 					if l_found_node.key = Void then
 						if l_found_node.right_child /= Void then
-							found_node := l_found_node.right_child
+							l_found_node := l_found_node.right_child
 						else
 							insert_position_is_left := False
 							l_stop := True
 						end
-					elseif key_comparator.less_than (a_key, l_found_node.key) then
+					elseif l_key_comparator.less_than (a_key, l_found_node.key) then
 						if l_found_node.left_child = Void then
 							insert_position_is_left := True
 							l_stop := True
 						else
-							found_node := l_found_node.left_child
+							l_found_node := l_found_node.left_child
 						end
-					elseif key_comparator.greater_than (a_key, l_found_node.key) then
+					elseif l_key_comparator.greater_than (a_key, l_found_node.key) then
 						if l_found_node.right_child = Void then
 							insert_position_is_left := False
 							l_stop := True
 						else
-							found_node := l_found_node.right_child
+							l_found_node := l_found_node.right_child
 						end
 					else
 						exact_insert_position_found := True
 						l_stop := True
 					end
-					l_found_node := found_node
 				end
 			end
+			found_node := l_found_node
 		ensure
 			result_not_void: found_node /= Void
 			no_left_child: insert_position_is_left and not exact_insert_position_found
