@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Argument Library"
 	copyright: "Copyright (c) 2006, Bernd Schoeller and others"
 	license: "MIT License"
-	date: "$Date: 2009-05-16 11:30:58 +0200 (Sat, 16 May 2009) $"
-	revision: "$Revision: 6637 $"
+	date: "$Date: 2009-06-22 19:38:33 +0200 (Mon, 22 Jun 2009) $"
+	revision: "$Revision: 6646 $"
 
 deferred class AP_OPTION
 
@@ -107,7 +107,7 @@ feature -- Access
 			l_long_form: like long_form
 		do
 			if has_long_form then
-				l_long_form := l_long_form
+				l_long_form := long_form
 				check
 					has_long_form: l_long_form /= Void
 				end
