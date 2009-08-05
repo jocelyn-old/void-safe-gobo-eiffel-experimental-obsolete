@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Structure Library"
 	copyright: "Copyright (c) 2003-2007, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-05-02 17:23:17 +0200 (Sat, 02 May 2009) $"
-	revision: "$Revision: 6630 $"
+	date: "$Date: 2009-08-03 17:45:42 +0200 (Mon, 03 Aug 2009) $"
+	revision: "$Revision: 6657 $"
 
 deferred class DS_SPARSE_CONTAINER [G, K]
 
@@ -473,6 +473,9 @@ feature -- Optimization
 						if j /= i then
 							item_storage_put (item_storage_item (i), j)
 							key_storage_put (key_storage_item (i), j)
+								-- Make sure that the slot at position `j' is considered as
+								-- a valid slot before calling `move_all_cursors'.
+							clashes_put (No_position, j)
 							move_all_cursors (i, j)
 						end
 					end
