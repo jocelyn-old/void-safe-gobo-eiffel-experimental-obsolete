@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Lexical Library"
 	copyright: "Copyright (c) 2001, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-03-02 18:28:36 +0100 (Mon, 02 Mar 2009) $"
-	revision: "$Revision: 6595 $"
+	date: "$Date: 2009-06-19 15:29:14 +0200 (Fri, 19 Jun 2009) $"
+	revision: "$Revision: 6645 $"
 
 deferred class YY_FULL_SCANNER_SKELETON
 
@@ -33,6 +33,7 @@ feature -- Scanning
 			yy_goto: INTEGER
 			yy_c: INTEGER
 			l_yy_ec: like yy_ec
+			l_content_area: like yy_content_area
 		do
 				-- This routine is implemented with a loop whose body
 				-- is a big inspect instruction. This is a mere
@@ -74,12 +75,21 @@ feature -- Scanning
 					yy_goto := yyMatch
 				when yyMatch then
 						-- Find the next match.
+					l_content_area := yy_content_area
 					from
 						l_yy_ec := yy_ec
 						if l_yy_ec /= Void then
-							yy_c := l_yy_ec.item (yy_content_area.item (yy_cp).code)
+							if l_content_area /= Void then
+								yy_c := l_yy_ec.item (l_content_area.item (yy_cp).code)
+							else
+								yy_c := l_yy_ec.item (yy_content.item (yy_cp).code)
+							end
 						else
-							yy_c := yy_content_area.item (yy_cp).code
+							if l_content_area /= Void then
+								yy_c := l_content_area.item (yy_cp).code
+							else
+								yy_c := yy_content.item (yy_cp).code
+							end
 						end
 						yy_current_state := yy_nxt.item (yy_current_state * yyNb_rows + yy_c)
 					until
@@ -92,9 +102,17 @@ feature -- Scanning
 						yy_cp := yy_cp + 1
 						l_yy_ec := yy_ec
 						if l_yy_ec /= Void then
-							yy_c := l_yy_ec.item (yy_content_area.item (yy_cp).code)
+							if l_content_area /= Void then
+								yy_c := l_yy_ec.item (l_content_area.item (yy_cp).code)
+							else
+								yy_c := l_yy_ec.item (yy_content.item (yy_cp).code)
+							end
 						else
-							yy_c := yy_content_area.item (yy_cp).code
+							if l_content_area /= Void then
+								yy_c := l_content_area.item (yy_cp).code
+							else
+								yy_c := yy_content.item (yy_cp).code
+							end
 						end
 						yy_current_state := yy_nxt.item (yy_current_state * yyNb_rows + yy_c)
 					end
@@ -222,9 +240,11 @@ feature {NONE} -- Implementation
 			yy_cp, yy_nb: INTEGER
 			yy_c: INTEGER
 			l_yy_ec: like yy_ec
+			l_content_area: like yy_content_area
 		do
 				-- Find the start state.
 			Result := yy_start_state + yy_at_beginning_of_line
+			l_content_area := yy_content_area
 			from
 				yy_cp := yy_start + yy_more_len
 				yy_nb := yy_end
@@ -232,7 +252,11 @@ feature {NONE} -- Implementation
 				yy_cp >= yy_nb
 			loop
 					-- Find the next state.
-				yy_c := yy_content_area.item (yy_cp).code
+				if l_content_area /= Void then
+					yy_c := l_content_area.item (yy_cp).code
+				else
+					yy_c := yy_content.item (yy_cp).code
+				end
 				l_yy_ec := yy_ec
 				if yy_c = 0 then
 					yy_c := yyNull_equiv_class

@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Kernel Library"
 	copyright: "Copyright (c) 2001, Eric Bezault and others"
 	license: "MIT License"
-	date: "$Date: 2009-03-02 18:28:36 +0100 (Mon, 02 Mar 2009) $"
-	revision: "$Revision: 6595 $"
+	date: "$Date: 2009-06-19 15:29:14 +0200 (Fri, 19 Jun 2009) $"
+	revision: "$Revision: 6645 $"
 
 deferred class KI_CHARACTER_BUFFER
 
@@ -82,13 +82,11 @@ feature -- Conversion
 			same_count: Result.count = count
 		end
 
-	as_special: SPECIAL [CHARACTER] is
+	as_special: ?SPECIAL [CHARACTER] is
 			-- 'SPECIAL [CHARACTER]' version of current character buffer;
 			-- Characters are indexed starting at 1;
 			-- Note that the result may share the internal data with `Current'.
-		deferred
-		ensure
-			as_special_not_void: Result /= Void
+		do
 		end
 
 feature -- Element change
