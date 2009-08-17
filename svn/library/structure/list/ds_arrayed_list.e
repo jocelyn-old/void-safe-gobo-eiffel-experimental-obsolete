@@ -48,7 +48,7 @@ feature {NONE} -- Initialization
 			positive_n: n >= 0
 		do
 			create special_routines
-			storage := special_routines.make (n + 1)
+			storage := special_routines.make (n)
 			capacity := n
 			set_internal_cursor (new_cursor)
 		ensure
@@ -65,7 +65,7 @@ feature {NONE} -- Initialization
 			positive_n: n >= 0
 		do
 			create special_routines
-			storage := special_routines.make (n + 1)
+			storage := special_routines.make (n)
 			capacity := n
 			set_internal_cursor (new_cursor)
 			create equality_tester
@@ -106,7 +106,7 @@ feature {NONE} -- Initialization
 				until
 					i > nb
 				loop
-					storage.put (other_cursor.item, i)
+					storage.put (other_cursor.item, i - 1)
 					other_cursor.forth
 					i := i + 1
 				end
@@ -134,7 +134,7 @@ feature {NONE} -- Initialization
 			until
 				j > nb
 			loop
-				storage.put (other.item (i), j)
+				storage.put (other.item (i), j - 1)
 				j := j + 1
 				i := i + 1
 			end
@@ -160,21 +160,21 @@ feature -- Access
 			-- Item at index `i'
 			-- (Performance: O(1).)
 		do
-			Result := storage.item (i)
+			Result := storage.item (i - 1)
 		end
 
 	first: G is
 			-- First item in list
 			-- (Performance: O(1).)
 		do
-			Result := storage.item (1)
+			Result := storage.item (0)
 		end
 
 	last: G is
 			-- Last item in list
 			-- (Performance: O(1).)
 		do
-			Result := storage.item (count)
+			Result := storage.item (count - 1)
 		end
 
 	new_cursor: DS_ARRAYED_LIST_CURSOR [G] is
@@ -207,7 +207,7 @@ feature -- Measurement
 				until
 					i < 1
 				loop
-					if a_tester.test (storage.item (i), v) then
+					if a_tester.test (storage.item (i - 1), v) then
 						Result := Result + 1
 					end
 					i := i - 1
@@ -218,7 +218,7 @@ feature -- Measurement
 				until
 					i < 1
 				loop
-					if storage.item (i) = v then
+					if storage.item (i - 1) = v then
 						Result := Result + 1
 					end
 					i := i - 1
@@ -243,7 +243,7 @@ feature -- Status report
 				until
 					i < 1
 				loop
-					if a_tester.test (storage.item (i), v) then
+					if a_tester.test (storage.item (i - 1), v) then
 						Result := True
 							-- Jump out of the loop.
 						i := 0
@@ -257,7 +257,7 @@ feature -- Status report
 				until
 					i < 1
 				loop
-					if storage.item (i) = v then
+					if storage.item (i - 1) = v then
 						Result := True
 							-- Jump out of the loop.
 						i := 0
@@ -323,7 +323,7 @@ feature -- Comparison
 				until
 					not Result or i > nb
 				loop
-					Result := (storage.item (i) = other_storage.item (i))
+					Result := (storage.item (i - 1) = other_storage.item (i - 1))
 					i := i + 1
 				end
 			end
@@ -336,7 +336,7 @@ feature -- Element change
 			-- Do not move cursors.
 			-- (Performance: O(1).)
 		do
-			storage.put (v, i)
+			storage.put (v, i - 1)
 		end
 
 	put_first (v: G) is
@@ -353,7 +353,7 @@ feature -- Element change
 			-- (Performance: O(1).)
 		do
 			count := count + 1
-			storage.put (v, count)
+			storage.force (v, count - 1)
 		end
 
 	put (v: G; i: INTEGER) is
@@ -366,7 +366,7 @@ feature -- Element change
 			else
 				move_right (i, 1)
 				move_cursors_right (i, 1)
-				storage.put (v, i)
+				storage.put (v, i - 1)
 			end
 		end
 
@@ -410,7 +410,7 @@ feature -- Element change
 				resize (new_capacity (count + 1))
 			end
 			count := count + 1
-			storage.put (v, count)
+			storage.put (v, count - 1)
 		end
 
 	force (v: G; i: INTEGER) is
@@ -476,7 +476,7 @@ feature -- Element change
 			until
 				other_cursor.after
 			loop
-				storage.put (other_cursor.item, i)
+				storage.put (other_cursor.item, i - 1)
 				i := i + 1
 				other_cursor.forth
 			end
@@ -515,7 +515,7 @@ feature -- Element change
 					until
 						other_cursor.after
 					loop
-						storage.put (other_cursor.item, k)
+						storage.put (other_cursor.item, k - 1)
 						k := k + 1
 						other_cursor.forth
 					end
@@ -623,7 +623,7 @@ feature -- removal
 			-- (Performance: O(1).)
 		do
 			move_last_cursors_after
-			storage.put_default (count)
+			storage.remove_tail (1)
 			count := count - 1
 		end
 
@@ -637,7 +637,7 @@ feature -- removal
 			else
 				move_cursors_left (i + 1)
 				move_left (i + 1, 1)
-				storage.put_default (count + 1)
+				storage.remove_tail (1)
 			end
 		end
 
@@ -682,7 +682,7 @@ feature -- removal
 			-- (Performance: O(1).)
 		do
 			move_all_cursors_after
-			clear_items (count - n + 1, count)
+			clear_last_items (n)
 			count := count - n
 		end
 
@@ -696,7 +696,7 @@ feature -- removal
 			else
 				move_all_cursors_after
 				move_left (i + n, n)
-				clear_items (count + 1, count + n)
+				clear_last_items (n)
 			end
 		end
 
@@ -724,7 +724,7 @@ feature -- removal
 			-- (Performance: O(1).)
 		do
 			move_all_cursors_after
-			clear_items (n + 1, count)
+			clear_last_items (count - n)
 			count := n
 		end
 
@@ -759,16 +759,16 @@ feature -- removal
 					loop
 						from
 						until
-							i > nb or else not a_tester.test (storage.item (i), v)
+							i > nb or else not a_tester.test (storage.item (i - 1), v)
 						loop
 							i := i + 1
 						end
 						from
 						until
-							i > nb or else a_tester.test (storage.item (i), v)
+							i > nb or else a_tester.test (storage.item (i - 1), v)
 						loop
 							j := j + 1
-							storage.put (storage.item (i), j)
+							storage.put (storage.item (i - 1), j)
 							i := i + 1
 						end
 					end
@@ -781,23 +781,23 @@ feature -- removal
 					loop
 						from
 						until
-							i > nb or else storage.item (i) /= v
+							i > nb or else storage.item (i - 1) /= v
 						loop
 							i := i + 1
 						end
 						from
 						until
-							i > nb or else storage.item (i) = v
+							i > nb or else storage.item (i - 1) = v
 						loop
 							j := j + 1
-							storage.put (storage.item (i), j)
+							storage.put (storage.item (i - 1), j - 1)
 							i := i + 1
 						end
 					end
 				end
 				old_count := count
 				count := j
-				clear_items (count + 1, old_count)
+				clear_last_items (old_count - count)
 			end
 		end
 
@@ -807,7 +807,7 @@ feature -- removal
 			-- (Performance: O(1).)
 		do
 			move_all_cursors_after
-			clear_items (1, count)
+			clear_last_items (count)
 			count := 0
 		end
 
@@ -817,7 +817,7 @@ feature -- Resizing
 			-- Resize list so that it can contain
 			-- at least `n' items. Do not lose any item.
 		do
-			storage := special_routines.resize (storage, n + 1)
+			storage := special_routines.resize (storage, n)
 			capacity := n
 		end
 
@@ -844,7 +844,7 @@ feature {NONE} -- Implementation
 			until
 				j < i
 			loop
-				storage.put (storage.item (j), j + offset)
+				storage.put (storage.item (j - 1), j + offset - 1)
 				j := j - 1
 			end
 		ensure
@@ -867,7 +867,7 @@ feature {NONE} -- Implementation
 			until
 				j > nb
 			loop
-				storage.put (storage.item (j), j - offset)
+				storage.put (storage.item (j - 1), j - offset - 1)
 				j := j + 1
 			end
 			count := count - offset
@@ -875,24 +875,34 @@ feature {NONE} -- Implementation
 			count_set: count = old count - offset
 		end
 
-	clear_items (s, e: INTEGER) is
-			-- Clear items in `storage' within bounds `s'..`e'.
+	clear_last_items (n: INTEGER) is
+			-- Clear all items in `storage' within bounds count - n .. count
 		require
-			s_large_enough: s >= 1
-			e_small_enough: e <= capacity
-			valid_bound: s <= e + 1
-		local
-			i: INTEGER
+			less_than_count: n <= count
 		do
-			from
-				i := s
-			until
-				i > e
-			loop
-				storage.put_default (i)
-				i := i + 1
+			if n > 0 then
+				storage.remove_tail (n)
 			end
 		end
+
+--	clear_items (s, e: INTEGER) is
+--			-- Clear items in `storage' within bounds `s'..`e'.
+--		require
+--			s_large_enough: s >= 1
+--			e_small_enough: e <= capacity
+--			valid_bound: s <= e + 1
+--		local
+--			i: INTEGER
+--		do
+--			from
+--				i := s
+--			until
+--				i > e
+--			loop
+--				storage.put_default (i - 1)
+--				i := i + 1
+--			end
+--		end
 
 feature {DS_ARRAYED_LIST} -- Implementation
 
@@ -1286,7 +1296,7 @@ feature {DS_ARRAYED_LIST_CURSOR} -- Cursor implementation
 invariant
 
 	storage_not_void: storage /= Void
-	capacity_definition: capacity = storage.count - 1
+	capacity_definition: capacity = storage.capacity
 	special_routines_not_void: special_routines /= Void
 
 end

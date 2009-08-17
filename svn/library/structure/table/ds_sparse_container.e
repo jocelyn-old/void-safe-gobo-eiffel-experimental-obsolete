@@ -36,10 +36,13 @@ feature {NONE} -- Initialization
 			-- Use `=' as comparison criterion.
 		require
 			positive_n: n >= 0
+		local
+			l_default_item: detachable G
+			l_default_key: detachable K
 		do
 			capacity := n
-			make_item_storage (n + 1)
-			make_key_storage (n + 1)
+			make_item_storage (n)
+			make_key_storage (n)
 			make_clashes (n + 1)
 			modulus := new_modulus (n)
 			make_slots (modulus + 1)
@@ -48,6 +51,8 @@ feature {NONE} -- Initialization
 			position := No_position
 			unset_found_item
 			set_internal_cursor (new_cursor)
+--			ht_deleted_item := l_default_item
+--			ht_deleted_key := l_default_key
 		ensure
 			empty: is_empty
 			capacity_set: capacity = n
@@ -459,6 +464,8 @@ feature -- Optimization
 			-- Do not lose any item. Do not move cursors.
 		local
 			i, j, nb, h: INTEGER
+			l_default_item: detachable G
+			l_default_key: detachable K
 		do
 			if last_position /= count then
 				unset_found_item
@@ -481,15 +488,19 @@ feature -- Optimization
 					end
 					i := i + 1
 				end
-				from
-					j := j + 1
-				until
-					j > nb
-				loop
-					item_storage_put_default (j)
-					key_storage_put_default (j)
-					j := j + 1
-				end
+				item_storage_keep_head (j)
+				key_storage_keep_head (j)
+				ht_deleted_position := 0
+
+--				from
+--					j := j + 1
+--				until
+--					j > nb
+--				loop
+--					item_storage_put_default (j)
+--					key_storage_put_default (j)
+--					j := j + 1
+--				end
 				clashes_wipe_out
 				slots_wipe_out
 				nb := count
@@ -534,24 +545,6 @@ feature {DS_SPARSE_CONTAINER_CURSOR} -- Implementation
 		deferred
 		ensure
 			inserted: item_storage_item (i) = v
-		end
-
-	item_storage_put_default (i: INTEGER) is
-			-- Put default value at position `i' in `item_storage'.
-		require
-			i_large_enough: i >= 1
-			i_small_enough: i <= capacity
-		deferred
-		ensure
-			inserted: item_storage_item_is_default (i)
-		end
-
-	item_storage_item_is_default (i: INTEGER): BOOLEAN is
-			-- Is item at position `i' in `item_storage' a default value?
-		require
-			i_large_enough: i >= 1
-			i_small_enough: i <= capacity
-		deferred
 		end
 
 	key_storage_item (i: INTEGER): K is
@@ -609,7 +602,8 @@ feature {NONE} -- Implementation
 					if
 						position = No_position or else
 						not a_tester.test (k, key_storage_item (position)) or else
-						a_tester.test (k, dead_key)
+						a_tester.test (k, dead_key) or else
+						(ht_deleted_position > 0 and then a_tester.test (k, ht_deleted_key))
 					then
 						from
 							slots_position := hash_position (k)
@@ -631,7 +625,12 @@ feature {NONE} -- Implementation
 						clashes_previous_position := prev
 					end
 				else
-					if position = No_position or else k /= key_storage_item (position) or else k = dead_key then
+					if
+						position = No_position or else
+						k /= key_storage_item (position) or else
+						k = dead_key or else
+						position = ht_deleted_position
+					then
 						from
 							slots_position := hash_position (k)
 							i := slots_item (slots_position)
@@ -717,8 +716,30 @@ feature {NONE} -- Implementation
 			else
 				clashes_put (clashes_item (position), clashes_previous_position)
 			end
-			item_storage_put_default (position)
-			key_storage_put_default (position)
+
+
+			if ht_deleted_position = position or ht_deleted_position = 0 then
+				get_new_ht_deleted_values (position)
+			end
+			if ht_deleted_position > 0 then
+				key_storage_put (ht_deleted_key, position)
+				item_storage_put (ht_deleted_item, position)
+			else
+				check False end
+			end
+
+--			if {l_ht_deleted_key: K} ht_deleted_key then
+--				key_storage_put (l_ht_deleted_key, position)
+--			else
+--				ht_deleted_key := key_storage_item (position)
+--			end
+
+--			if {l_ht_deleted_item: G} ht_deleted_item then
+--				item_storage_put (l_ht_deleted_item, position)
+--			else
+--				ht_deleted_item := item_storage_item (position)
+--			end
+
 			if free_slot = No_position and position = last_position then
 				last_position := last_position - 1
 				clashes_put (No_position, position)
@@ -751,6 +772,11 @@ feature {NONE} -- Implementation
 		deferred
 		end
 
+	item_storage_keep_head (n: INTEGER) is
+			-- Keep the first `n' items in `item_storage'.
+		deferred
+		end
+
 	item_storage_wipe_out is
 			-- Wipe out items in `item_storage'.
 		deferred
@@ -772,14 +798,6 @@ feature {NONE} -- Implementation
 		deferred
 		end
 
-	key_storage_put_default (i: INTEGER) is
-			-- Put default value at position `i' in `key_storage'.
-		require
-			i_large_enough: i >= 1
-			i_small_enough: i <= capacity
-		deferred
-		end
-
 	clone_key_storage is
 			-- Clone `key_storage'.
 		deferred
@@ -789,6 +807,11 @@ feature {NONE} -- Implementation
 			-- Resize `key_storage'.
 		require
 			n_large_enough: n > capacity
+		deferred
+		end
+
+	key_storage_keep_head (n: INTEGER) is
+			-- Keep the first `n' items in `key_storage'.
 		deferred
 		end
 
@@ -909,6 +932,72 @@ feature {NONE} -- Implementation
 		ensure
 			not_found: not found
 			found_position_unset: found_position = No_position
+		end
+
+feature {NONE} -- NEW SPECIAL: Implementation
+
+	ht_deleted_position: INTEGER
+
+	ht_deleted_item: G is
+		require
+			ht_deleted_position_not_zero: ht_deleted_position > 0
+		do
+			Result := item_storage_item (ht_deleted_position)
+		end
+
+	ht_deleted_key: K is
+		require
+			ht_deleted_position_not_zero: ht_deleted_position > 0
+		do
+			Result := key_storage_item (ht_deleted_position)
+		end
+
+	get_new_ht_deleted_values (a_excluded_position: INTEGER) is
+			-- Get a new values for `ht_deleted_item' and `ht_deleted_key"
+			-- set `ht_deleted_position' to found position
+		local
+			i, p: INTEGER
+			done: BOOLEAN
+			old_deleted_position: INTEGER
+			old_free_slot: INTEGER
+			k: K
+			g: G
+		do
+			if a_excluded_position = ht_deleted_position then
+				old_deleted_position := ht_deleted_position
+			end
+
+			ht_deleted_position := 0
+			from
+				i := 1
+			until
+				i >= modulus or done
+			loop
+				p := slots_item (i)
+				if p > 0 and p /= a_excluded_position then
+					ht_deleted_position := p
+					done := True
+				end
+				i := i + 1
+			end
+
+			if old_deleted_position > 0 then
+					--| Replace all previous deleted marks with new deleted marks
+				old_free_slot := free_slot
+				from
+					i := free_slot
+					k := ht_deleted_key
+					g := ht_deleted_item
+				until
+					i = No_position
+				loop
+					key_storage_put (k, i)
+					item_storage_put (g, i)
+					free_slot := Free_offset - clashes_item (i)
+					i := free_slot
+				end
+				free_slot := old_free_slot
+			end
 		end
 
 feature {NONE} -- Constants

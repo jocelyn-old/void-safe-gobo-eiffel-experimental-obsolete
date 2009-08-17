@@ -287,31 +287,31 @@ feature {DS_MULTIARRAYED_SPARSE_TABLE_CURSOR} -- Implementation
 			subitems.put (v, i \\ chunk_size)
 		end
 
-	item_storage_put_default (i: INTEGER) is
-			-- Put default value at position `i' in `item_storage'.
-		local
-			subitems: ?SPECIAL [G]
-			j: INTEGER
-		do
-			j := i // chunk_size
-			subitems := item_storage.item (j)
-			if subitems = Void then
-				subitems := special_item_routines.make (chunk_size)
-				item_storage.put (subitems, j)
-			end
-			subitems.put_default (i \\ chunk_size)
-		end
+--	item_storage_put_default (i: INTEGER) is
+--			-- Put default value at position `i' in `item_storage'.
+--		local
+--			subitems: ?SPECIAL [G]
+--			j: INTEGER
+--		do
+--			j := i // chunk_size
+--			subitems := item_storage.item (j)
+--			if subitems = Void then
+--				subitems := special_item_routines.make (chunk_size)
+--				item_storage.put (subitems, j)
+--			end
+--			subitems.put_default (i \\ chunk_size)
+--		end
 
-	item_storage_item_is_default (i: INTEGER): BOOLEAN is
-			-- Is item at position `i' in `item_storage' a default value?
-		local
-			subitems: ?SPECIAL [G]
-		do
-			subitems := item_storage.item (i // chunk_size)
-			if subitems /= Void then
-				Result := subitems.is_default (i \\ chunk_size)
-			end
-		end
+--	item_storage_item_is_default (i: INTEGER): BOOLEAN is
+--			-- Is item at position `i' in `item_storage' a default value?
+--		local
+--			subitems: ?SPECIAL [G]
+--		do
+--			subitems := item_storage.item (i // chunk_size)
+--			if subitems /= Void then
+--				Result := subitems.is_default (i \\ chunk_size)
+--			end
+--		end
 
 	key_storage_item (i: INTEGER): K is
 			-- Item at position `i' in `key_storage'
@@ -378,6 +378,24 @@ feature {NONE} -- Implementation
 			array_special_item_routines.resize (item_storage, 0, ((n - 1) // chunk_size))
 		end
 
+	item_storage_keep_head (n: INTEGER_32)
+			-- Keep the first `n' items in `item_storage'.
+		local
+			i, j: INTEGER
+		do
+			from
+				i := item_storage.upper
+				j := 0
+			until
+				j >= n
+			loop
+				item_storage.put (Void, i)
+				j := j + 1
+				i := i - 1
+			end
+--			item_storage.keep_head (n)
+		end
+
 	item_storage_wipe_out is
 			-- Wipe out items in `item_storage'.
 		local
@@ -420,20 +438,20 @@ feature {NONE} -- Implementation
 			subkeys.put (k, i \\ chunk_size)
 		end
 
-	key_storage_put_default (i: INTEGER) is
-			-- Put default value at position `i' in `key_storage'.
-		local
-			subkeys: ?SPECIAL [K]
-			j: INTEGER
-		do
-			j := i // chunk_size
-			subkeys := key_storage.item (j)
-			if subkeys = Void then
-				subkeys := special_key_routines.make (chunk_size)
-				key_storage.put (subkeys, j)
-			end
-			subkeys.put_default (i \\ chunk_size)
-		end
+--	key_storage_put_default (i: INTEGER) is
+--			-- Put default value at position `i' in `key_storage'.
+--		local
+--			subkeys: ?SPECIAL [K]
+--			j: INTEGER
+--		do
+--			j := i // chunk_size
+--			subkeys := key_storage.item (j)
+--			if subkeys = Void then
+--				subkeys := special_key_routines.make (chunk_size)
+--				key_storage.put (subkeys, j)
+--			end
+--			subkeys.put_default (i \\ chunk_size)
+--		end
 
 	clone_key_storage is
 			-- Clone `key_storage'.
@@ -460,6 +478,24 @@ feature {NONE} -- Implementation
 			-- Resize `key_storage'.
 		do
 			array_special_key_routines.resize (key_storage, 0, ((n - 1) // chunk_size))
+		end
+
+	key_storage_keep_head (n: INTEGER_32)
+			-- Keep the first `n' items in `key_storage'.
+		local
+			i, j: INTEGER
+		do
+			from
+				i := key_storage.upper
+				j := 0
+			until
+				j >= n
+			loop
+				key_storage.put (Void, i)
+				j := j + 1
+				i := i - 1
+			end
+--			key_storage.keep_head (n)
 		end
 
 	key_storage_wipe_out is

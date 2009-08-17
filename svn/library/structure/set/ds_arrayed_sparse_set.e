@@ -66,17 +66,17 @@ feature {NONE} -- Implementation
 			item_storage.put (v, i)
 		end
 
-	item_storage_put_default (i: INTEGER) is
-			-- Put default value at position `i' in `item_storage'.
-		do
-			item_storage.put_default (i)
-		end
+--	item_storage_put_default (i: INTEGER) is
+--			-- Put default value at position `i' in `item_storage'.
+--		do
+--			item_storage.put_default (i)
+--		end
 
-	item_storage_item_is_default (i: INTEGER): BOOLEAN is
-			-- Is item at position `i' in `item_storage' a default value?
-		do
-			Result := item_storage.is_default (i)
-		end
+--	item_storage_item_is_default (i: INTEGER): BOOLEAN is
+--			-- Is item at position `i' in `item_storage' a default value?
+--		do
+--			Result := item_storage.is_default (i)
+--		end
 
 	clone_item_storage is
 			-- Clone `item_storage'.
@@ -90,19 +90,26 @@ feature {NONE} -- Implementation
 			item_storage := special_item_routines.resize (item_storage, n)
 		end
 
+	item_storage_keep_head (n: INTEGER_32)
+			-- Keep the first `n' items in `item_storage'.
+		do
+			item_storage.keep_head (n)
+		end
+
 	item_storage_wipe_out is
 			-- Wipe out items in `item_storage'.
-		local
-			i: INTEGER
+--		local
+--			i: INTEGER
 		do
-			from
-				i := last_position
-			until
-				i < 1
-			loop
-				item_storage.put_default (i)
-				i := i - 1
-			end
+			item_storage.wipe_out
+--			from
+--				i := last_position
+--			until
+--				i < 1
+--			loop
+--				item_storage.put_default (i)
+--				i := i - 1
+--			end
 		end
 
 	clashes: SPECIAL [INTEGER]

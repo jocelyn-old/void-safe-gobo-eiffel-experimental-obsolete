@@ -648,6 +648,11 @@ feature {NONE} -- Implementation
 		do
 		end
 
+	key_storage_keep_head (n: INTEGER_32)
+			-- Keep the first `n' items in `key_storage'.
+		do
+		end
+
 	key_storage_wipe_out is
 			-- Wipe out items in `key_storage'.
 		do

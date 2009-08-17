@@ -284,28 +284,30 @@ feature -- Removal
 	remove is
 			-- Remove top item from stack.
 		do
-			storage.put_default (count)
+			storage.remove_tail (1)
 			count := count - 1
 		end
 
 	prune (n: INTEGER) is
 			-- Remove `n' items from stack.
 		do
-			clear_items (count - n + 1, count)
+			storage.remove_tail (n)
 			count := count - n
 		end
 
 	keep (n: INTEGER) is
 			-- Keep `n' items in stack.
 		do
-			clear_items (n + 1, count)
+			if n < storage.count then
+				storage.remove_tail (n + 1)
+			end
 			count := n
 		end
 
 	wipe_out is
 			-- Remove all items from stack.
 		do
-			clear_items (1, count)
+			storage.wipe_out
 			count := 0
 		end
 
@@ -407,24 +409,24 @@ feature {DS_ARRAYED_STACK} -- Implementation
 
 feature {NONE} -- Implementation
 
-	clear_items (s, e: INTEGER) is
-			-- Clear items in `storage' within bounds `s'..`e'.
-		require
-			s_large_enough: s >= 1
-			e_small_enough: e <= capacity
-			valid_bound: s <= e + 1
-		local
-			i: INTEGER
-		do
-			from
-				i := s
-			until
-				i > e
-			loop
-				storage.put_default (i)
-				i := i + 1
-			end
-		end
+--	clear_items (s, e: INTEGER) is
+--			-- Clear items in `storage' within bounds `s'..`e'.
+--		require
+--			s_large_enough: s >= 1
+--			e_small_enough: e <= capacity
+--			valid_bound: s <= e + 1
+--		local
+--			i: INTEGER
+--		do
+--			from
+--				i := s
+--			until
+--				i > e
+--			loop
+--				storage.put_default (i)
+--				i := i + 1
+--			end
+--		end
 
 	special_routines: KL_SPECIAL_ROUTINES [G]
 			-- Routines that ought to be in SPECIAL

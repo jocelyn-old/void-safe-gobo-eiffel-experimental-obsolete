@@ -12,6 +12,7 @@
 		<cluster name="ds_testgen" location="TESTGEN"/>
 		<library name="gobo_test" location="${GOBO}/../gobo_test.ecf" />
 		<library name="gobo_kernel" location="${GOBO}/../gobo_kernel.ecf" />
+		<library name="gobo_regexp" location="${GOBO}/../gobo_regexp.ecf" />
 		<library name="gobo_structure" location="${GOBO}/../gobo_structure.ecf" />
 		<library name="gobo_utility" location="${GOBO}/../gobo_utility.ecf" />
 		<library name="gobo_pattern" location="${GOBO}/../gobo_pattern.ecf" />
