@@ -410,7 +410,7 @@ feature -- Element change
 				resize (new_capacity (count + 1))
 			end
 			count := count + 1
-			storage.put (v, count - 1)
+			storage.force (v, count - 1)
 		end
 
 	force (v: G; i: INTEGER) is

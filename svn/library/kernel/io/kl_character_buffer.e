@@ -85,7 +85,7 @@ feature -- Element change
 	put (v: CHARACTER; i: INTEGER) is
 			-- Replace character at position `i' by `v'.
 		do
-			as_special.put (v, i)
+			as_special.force (v, i)
 		end
 
 	append_substring_to_string (s, e: INTEGER; a_string: STRING) is
