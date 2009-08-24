@@ -147,7 +147,7 @@ feature {NONE} -- Implementation
 		end
 
 
-	parse_scheme (a_tokenizer: XM_XPOINTER_TOKENIZER; a_name: detachable STRING) is
+	parse_scheme (a_tokenizer: XM_XPOINTER_TOKENIZER; a_name: ?STRING) is
 			-- Parse a single XPointer scheme name and data and set `last_token'.
 		require
 			no_previous_error: not is_error
@@ -208,7 +208,7 @@ feature {NONE} -- Implementation
 				and then current_scheme_data /= Void
 		end
 
-	parse_scheme_name (a_tokenizer: XM_XPOINTER_TOKENIZER; a_name: detachable STRING) is
+	parse_scheme_name (a_tokenizer: XM_XPOINTER_TOKENIZER; a_name: ?STRING) is
 			-- Parse scheme name
 		require
 			no_previous_error: not is_error

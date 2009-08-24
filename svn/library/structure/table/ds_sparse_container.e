@@ -37,8 +37,8 @@ feature {NONE} -- Initialization
 		require
 			positive_n: n >= 0
 		local
-			l_default_item: detachable G
-			l_default_key: detachable K
+			l_default_item: ?G
+			l_default_key: ?K
 		do
 			capacity := n
 			make_item_storage (n)
@@ -464,8 +464,8 @@ feature -- Optimization
 			-- Do not lose any item. Do not move cursors.
 		local
 			i, j, nb, h: INTEGER
-			l_default_item: detachable G
-			l_default_key: detachable K
+			l_default_item: ?G
+			l_default_key: ?K
 		do
 			if last_position /= count then
 				unset_found_item

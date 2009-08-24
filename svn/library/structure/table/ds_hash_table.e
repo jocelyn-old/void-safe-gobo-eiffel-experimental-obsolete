@@ -11,7 +11,7 @@ indexing
 	date: "$Date: 2008-09-28 20:40:54 +0200 (Sun, 28 Sep 2008) $"
 	revision: "$Revision: 6526 $"
 
-class DS_HASH_TABLE [G, K -> detachable HASHABLE]
+class DS_HASH_TABLE [G, K -> ?HASHABLE]
 
 inherit
 

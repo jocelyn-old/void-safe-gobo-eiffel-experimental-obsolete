@@ -89,7 +89,7 @@ feature {NONE} -- Implementation
 					std.error.put_new_line
 				end
 			end
-			yyvs.put_default (yyvsp)
+--			yyvs.put_default (yyvsp)
 		end
 
 	yy_pop_last_value (yystate: INTEGER) is

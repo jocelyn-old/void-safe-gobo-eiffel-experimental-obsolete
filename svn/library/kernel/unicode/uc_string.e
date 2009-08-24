@@ -136,6 +136,7 @@ inherit
 			has_code,
 			index_of_code,
 			substring_index,
+			subcopy,
 			plus,
 			copy
 		select
@@ -183,6 +184,7 @@ inherit
 			append_character,
 			substring_index,
 			substring,
+			subcopy,
 			append_string,
 			replace_substring,
 			replace_substring_all,
@@ -672,6 +674,26 @@ feature -- Access
 			end
 		ensure then
 			first_unicode_item: Result.count > 0 implies Result.item_code (1) = item_code (start_index)
+		end
+
+	subcopy (other: STRING_8; start_pos, end_pos, index_pos: INTEGER)
+			-- Copy characters of `other' within bounds `start_pos' and
+			-- `end_pos' to current string starting at index `index_pos'.
+		local
+			l_other_area, l_area: like area
+		do
+			if end_pos >= start_pos then
+				l_other_area := other.area
+				l_area := area
+				if l_area /= l_other_area then
+					l_area.copy_data (l_other_area, start_pos - 1, index_pos - 1,
+						end_pos - start_pos + 1)
+				else
+					l_area.overlapping_move (start_pos - 1, index_pos - 1,
+						end_pos - start_pos + 1)
+				end
+				internal_hash_code := 0
+			end
 		end
 
 	unicode_substring_index (other: STRING_GENERAL; start_index: INTEGER): INTEGER is
