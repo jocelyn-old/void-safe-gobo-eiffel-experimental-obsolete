@@ -39,7 +39,7 @@ feature {DS_ARRAYED_SPARSE_SET_CURSOR} -- Implementation
 	item_storage_item (i: INTEGER): G is
 			-- Item at position `i' in `item_storage'
 		do
-			Result := item_storage.item (i)
+			Result := item_storage.item (i - 1)
 		end
 
 	clashes_item (i: INTEGER): INTEGER is
@@ -57,26 +57,14 @@ feature {NONE} -- Implementation
 			-- Create `item_storage'.
 		do
 			create special_item_routines
-			item_storage := special_item_routines.make (n)
+			item_storage := special_item_routines.make (n - 1)
 		end
 
 	item_storage_put (v: G; i: INTEGER) is
 			-- Put `v' at position `i' in `item_storage'.
 		do
-			item_storage.put (v, i)
+			item_storage.force (v, i - 1)
 		end
-
---	item_storage_put_default (i: INTEGER) is
---			-- Put default value at position `i' in `item_storage'.
---		do
---			item_storage.put_default (i)
---		end
-
---	item_storage_item_is_default (i: INTEGER): BOOLEAN is
---			-- Is item at position `i' in `item_storage' a default value?
---		do
---			Result := item_storage.is_default (i)
---		end
 
 	clone_item_storage is
 			-- Clone `item_storage'.
@@ -122,7 +110,7 @@ feature {NONE} -- Implementation
 	make_clashes (n: INTEGER) is
 			-- Create `clashes'.
 		do
-			clashes := SPECIAL_INTEGER_.make (n)
+			clashes := SPECIAL_INTEGER_.make_filled (0, n)
 		end
 
 	clashes_put (v: INTEGER; i: INTEGER) is
@@ -166,7 +154,7 @@ feature {NONE} -- Implementation
 	make_slots (n: INTEGER) is
 			-- Create `slots'.
 		do
-			slots := SPECIAL_INTEGER_.make (n)
+			slots := SPECIAL_INTEGER_.make_filled (0, n)
 		end
 
 	slots_item (i: INTEGER): INTEGER is
@@ -214,7 +202,7 @@ feature {NONE} -- Implementation
 invariant
 
 	item_storage_not_void: item_storage /= Void
-	item_storage_count: item_storage.count = capacity + 1
+	item_storage_count: item_storage.count = capacity
 	clashes_not_void: clashes /= Void
 	clashes_count: clashes.count = capacity + 1
 	slots_not_void: slots /= Void
