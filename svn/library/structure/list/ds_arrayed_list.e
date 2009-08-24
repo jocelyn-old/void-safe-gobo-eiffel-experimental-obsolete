@@ -106,7 +106,7 @@ feature {NONE} -- Initialization
 				until
 					i > nb
 				loop
-					storage.put (other_cursor.item, i - 1)
+					storage.force (other_cursor.item, i - 1)
 					other_cursor.forth
 					i := i + 1
 				end
@@ -134,7 +134,7 @@ feature {NONE} -- Initialization
 			until
 				j > nb
 			loop
-				storage.put (other.item (i), j - 1)
+				storage.force (other.item (i), j - 1)
 				j := j + 1
 				i := i + 1
 			end
@@ -476,7 +476,7 @@ feature -- Element change
 			until
 				other_cursor.after
 			loop
-				storage.put (other_cursor.item, i - 1)
+				storage.force (other_cursor.item, i - 1)
 				i := i + 1
 				other_cursor.forth
 			end
@@ -515,7 +515,7 @@ feature -- Element change
 					until
 						other_cursor.after
 					loop
-						storage.put (other_cursor.item, k - 1)
+						storage.force (other_cursor.item, k - 1)
 						k := k + 1
 						other_cursor.forth
 					end
@@ -768,7 +768,7 @@ feature -- removal
 							i > nb or else a_tester.test (storage.item (i - 1), v)
 						loop
 							j := j + 1
-							storage.put (storage.item (i - 1), j)
+							storage.force (storage.item (i - 1), j)
 							i := i + 1
 						end
 					end
@@ -790,7 +790,7 @@ feature -- removal
 							i > nb or else storage.item (i - 1) = v
 						loop
 							j := j + 1
-							storage.put (storage.item (i - 1), j - 1)
+							storage.force (storage.item (i - 1), j - 1)
 							i := i + 1
 						end
 					end
@@ -844,7 +844,7 @@ feature {NONE} -- Implementation
 			until
 				j < i
 			loop
-				storage.put (storage.item (j - 1), j + offset - 1)
+				storage.force (storage.item (j - 1), j + offset - 1)
 				j := j - 1
 			end
 		ensure

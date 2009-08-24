@@ -127,7 +127,7 @@ feature {NONE} -- Implementation
 					yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 					yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 				end
-				yyvs1.put (last_any_value, yyvsp1)
+				yyvs1.force (last_any_value, yyvsp1)
 			when 2 then
 				yyvsp2 := yyvsp2 + 1
 				if yyvsp2 >= yyvsc2 then
@@ -137,7 +137,7 @@ feature {NONE} -- Implementation
 					yyvsc2 := yyvsc2 + yyInitial_yyvs_size
 					yyvs2 := yyspecial_routines2.resize (yyvs2, yyvsc2)
 				end
-				yyvs2.put (last_string_value, yyvsp2)
+				yyvs2.force (last_string_value, yyvsp2)
 			when 3 then
 				yyvsp3 := yyvsp3 + 1
 				if yyvsp3 >= yyvsc3 then
@@ -147,7 +147,7 @@ feature {NONE} -- Implementation
 					yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 					yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 				end
-				yyvs3.put (last_integer_value, yyvsp3)
+				yyvs3.force (last_integer_value, yyvsp3)
 			when 4 then
 				yyvsp4 := yyvsp4 + 1
 				if yyvsp4 >= yyvsc4 then
@@ -157,7 +157,7 @@ feature {NONE} -- Implementation
 					yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 					yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 				end
-				yyvs4.put (last_lx_symbol_class_value, yyvsp4)
+				yyvs4.force (last_lx_symbol_class_value, yyvsp4)
 			else
 				debug ("GEYACC")
 					std.error.put_string ("Error in parser: not a token type: ")
@@ -182,7 +182,7 @@ feature {NONE} -- Implementation
 				yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 				yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 			end
-			yyvs1.put (yyval1, yyvsp1)
+			yyvs1.force (yyval1, yyvsp1)
 		end
 
 	yy_pop_last_value (yystate: INTEGER) is
@@ -238,7 +238,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -3
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 2 then
 --|#line 63 "lx_lex_parser.y"
@@ -253,7 +253,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 3 then
 --|#line 72 "lx_lex_parser.y"
@@ -272,7 +272,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 4 then
 --|#line 73 "lx_lex_parser.y"
@@ -286,7 +286,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -3
 	yyvsp3 := yyvsp3 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 5 then
 --|#line 77 "lx_lex_parser.y"
@@ -300,7 +300,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -3
 	yyvsp3 := yyvsp3 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 6 then
 --|#line 83 "lx_lex_parser.y"
@@ -319,7 +319,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 7 then
 --|#line 84 "lx_lex_parser.y"
@@ -340,7 +340,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 8 then
 --|#line 88 "lx_lex_parser.y"
@@ -351,7 +351,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 9 then
 --|#line 89 "lx_lex_parser.y"
@@ -363,7 +363,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 10 then
 --|#line 95 "lx_lex_parser.y"
@@ -385,7 +385,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 11 then
 --|#line 103 "lx_lex_parser.y"
@@ -405,7 +405,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 12 then
 --|#line 107 "lx_lex_parser.y"
@@ -419,7 +419,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 13 then
 --|#line 112 "lx_lex_parser.y"
@@ -431,7 +431,7 @@ yyval3 := yyvs3.item (yyvsp3)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 14 then
 --|#line 116 "lx_lex_parser.y"
@@ -452,7 +452,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 15 then
 --|#line 122 "lx_lex_parser.y"
@@ -473,7 +473,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 16 then
 --|#line 126 "lx_lex_parser.y"
@@ -487,7 +487,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 17 then
 --|#line 130 "lx_lex_parser.y"
@@ -499,7 +499,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 18 then
 --|#line 136 "lx_lex_parser.y"
@@ -512,7 +512,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 19 then
 --|#line 140 "lx_lex_parser.y"
@@ -533,7 +533,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 20 then
 --|#line 144 "lx_lex_parser.y"
@@ -545,7 +545,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 21 then
 --|#line 148 "lx_lex_parser.y"
@@ -557,7 +557,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 22 then
 --|#line 154 "lx_lex_parser.y"
@@ -572,7 +572,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 23 then
 --|#line 160 "lx_lex_parser.y"
@@ -590,7 +590,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 24 then
 --|#line 169 "lx_lex_parser.y"
@@ -607,7 +607,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 25 then
 --|#line 178 "lx_lex_parser.y"
@@ -623,7 +623,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 26 then
 --|#line 185 "lx_lex_parser.y"
@@ -640,7 +640,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp5 := yyvsp5 -1
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 27 then
 --|#line 194 "lx_lex_parser.y"
@@ -655,7 +655,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 28 then
 --|#line 201 "lx_lex_parser.y"
@@ -678,7 +678,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp5 := yyvsp5 -2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 29 then
 --|#line 201 "lx_lex_parser.y"
@@ -700,7 +700,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 30 then
 --|#line 222 "lx_lex_parser.y"
@@ -719,7 +719,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 31 then
 --|#line 234 "lx_lex_parser.y"
@@ -737,7 +737,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 32 then
 --|#line 244 "lx_lex_parser.y"
@@ -759,7 +759,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp5 := yyvsp5 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 33 then
 --|#line 259 "lx_lex_parser.y"
@@ -774,7 +774,7 @@ end
 		
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 34 then
 --|#line 268 "lx_lex_parser.y"
@@ -796,7 +796,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 35 then
 --|#line 273 "lx_lex_parser.y"
@@ -812,7 +812,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 36 then
 --|#line 280 "lx_lex_parser.y"
@@ -828,7 +828,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 37 then
 --|#line 287 "lx_lex_parser.y"
@@ -844,7 +844,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 38 then
 --|#line 294 "lx_lex_parser.y"
@@ -859,7 +859,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -3
 	yyvsp3 := yyvsp3 -2
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 39 then
 --|#line 299 "lx_lex_parser.y"
@@ -874,7 +874,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -3
 	yyvsp3 := yyvsp3 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 40 then
 --|#line 304 "lx_lex_parser.y"
@@ -890,7 +890,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -2
 	yyvsp3 := yyvsp3 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 41 then
 --|#line 310 "lx_lex_parser.y"
@@ -912,7 +912,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 42 then
 --|#line 315 "lx_lex_parser.y"
@@ -934,7 +934,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 43 then
 --|#line 320 "lx_lex_parser.y"
@@ -956,7 +956,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 44 then
 --|#line 325 "lx_lex_parser.y"
@@ -969,7 +969,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 45 then
 --|#line 329 "lx_lex_parser.y"
@@ -985,7 +985,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 46 then
 --|#line 338 "lx_lex_parser.y"
@@ -1001,7 +1001,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
 	yyvsp1 := yyvsp1 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 47 then
 --|#line 344 "lx_lex_parser.y"
@@ -1018,7 +1018,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp2 := yyvsp2 -1
 	yyvsp1 := yyvsp1 -2
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 48 then
 --|#line 353 "lx_lex_parser.y"
@@ -1039,7 +1039,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 49 then
 --|#line 357 "lx_lex_parser.y"
@@ -1052,7 +1052,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp3 := yyvsp3 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 50 then
 --|#line 361 "lx_lex_parser.y"
@@ -1075,7 +1075,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 51 then
 --|#line 366 "lx_lex_parser.y"
@@ -1089,7 +1089,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp3 := yyvsp3 -2
 	yyvsp1 := yyvsp1 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 52 then
 --|#line 372 "lx_lex_parser.y"
@@ -1110,7 +1110,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 53 then
 --|#line 377 "lx_lex_parser.y"
@@ -1124,7 +1124,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp3 := yyvsp3 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 54 then
 --|#line 384 "lx_lex_parser.y"
@@ -1143,7 +1143,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 55 then
 --|#line 385 "lx_lex_parser.y"
@@ -1154,7 +1154,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 56 then
 --|#line 386 "lx_lex_parser.y"
@@ -1167,7 +1167,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 			else
 				debug ("GEYACC")

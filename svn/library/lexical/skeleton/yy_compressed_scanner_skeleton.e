@@ -138,7 +138,7 @@ feature -- Scanning
 --	END INLINING 'yy_at_beginning_of_line'
 					if yyReject_or_variable_trail_context then
 							-- Set up for storing up states.
-						attached_yy_state_stack.put (yy_current_state, 0)
+						attached_yy_state_stack.force (yy_current_state, 0)
 						yy_state_count := 1
 					end
 					yy_goto := yyMatch
@@ -191,7 +191,7 @@ feature -- Scanning
 						end
 						yy_current_state := yy_nxt.item (yy_base.item (yy_current_state) + yy_c)
 						if yyReject_or_variable_trail_context then
-							attached_yy_state_stack.put (yy_current_state, yy_state_count)
+							attached_yy_state_stack.force (yy_current_state, yy_state_count)
 							yy_state_count := yy_state_count + 1
 						end
 						yy_cp := yy_cp + 1
@@ -492,7 +492,7 @@ feature {NONE} -- Implementation
 --	END INLINING
 			if yyReject_or_variable_trail_context then
 					-- Set up for storing up states.
-				attached_yy_state_stack.put (Result, 0)
+				attached_yy_state_stack.force (Result, 0)
 				yy_state_count := 1
 			end
 			l_content_area := yy_content_area
@@ -543,7 +543,7 @@ feature {NONE} -- Implementation
 				end
 				Result := yy_nxt.item (yy_base.item (Result) + yy_c)
 				if yyReject_or_variable_trail_context then
-					attached_yy_state_stack.put (Result, yy_state_count)
+					attached_yy_state_stack.force (Result, yy_state_count)
 					yy_state_count := yy_state_count + 1
 				end
 				yy_cp := yy_cp + 1
@@ -588,7 +588,7 @@ feature {NONE} -- Implementation
 			end
 			Result := yy_nxt.item (yy_base.item (Result) + yy_c)
 			if yyReject_or_variable_trail_context then
-				attached_yy_state_stack.put (Result, yy_state_count)
+				attached_yy_state_stack.force (Result, yy_state_count)
 				yy_state_count := yy_state_count + 1
 			end
 			yy_is_jam := (Result = yyJam_state)

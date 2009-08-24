@@ -452,7 +452,7 @@ feature -- Output
 		end
 
 	print_push_yyval (indent: INTEGER; a_file: KI_TEXT_OUTPUT_STREAM) is
-			-- Print "yyvs.put (yyval, yyvsp)" to `a_file'.
+			-- Print "yyvs.force (yyval, yyvsp)" to `a_file'.
 		require
 			indent_positive: indent >= 0
 			a_file_not_void: a_file /= Void
@@ -461,7 +461,7 @@ feature -- Output
 			print_indentation (indent, a_file)
 			a_file.put_string ("yyvs")
 			a_file.put_integer (id)
-			a_file.put_string (".put (yyval")
+			a_file.put_string (".force (yyval")
 			a_file.put_integer (id)
 			a_file.put_string (", yyvsp")
 			a_file.put_integer (id)
@@ -469,7 +469,7 @@ feature -- Output
 		end
 
 	print_push_last_value (indent: INTEGER; a_file: KI_TEXT_OUTPUT_STREAM) is
-			-- Print "yyvsp := yyvsp + 1; yyvs.put (last_value, yyvsp)" to `a_file'.
+			-- Print "yyvsp := yyvsp + 1; yyvs.force (last_value, yyvsp)" to `a_file'.
 		require
 			indent_positive: indent >= 0
 			a_file_not_void: a_file /= Void
@@ -486,7 +486,7 @@ feature -- Output
 			print_indentation (indent, a_file)
 			a_file.put_string ("yyvs")
 			a_file.put_integer (id)
-			a_file.put_string (".put (")
+			a_file.put_string (".force (")
 			a_file.put_string (last_value_name)
 			a_file.put_string (", yyvsp")
 			a_file.put_integer (id)

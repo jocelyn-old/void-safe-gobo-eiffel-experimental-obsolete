@@ -192,7 +192,7 @@ feature {NONE} -- Implementation
 	clashes_resize (n: INTEGER) is
 			-- Resize `clashes'.
 		do
-			clashes := SPECIAL_INTEGER_.resize (clashes, n)
+			clashes := SPECIAL_INTEGER_.resize_with_default (0, clashes, n)
 		end
 
 	clashes_wipe_out is
@@ -242,7 +242,7 @@ feature {NONE} -- Implementation
 	slots_resize (n: INTEGER) is
 			-- Resize `slots'.
 		do
-			slots := SPECIAL_INTEGER_.resize (slots, n)
+			slots := SPECIAL_INTEGER_.resize_with_default (0, slots, n)
 		end
 
 	slots_wipe_out is

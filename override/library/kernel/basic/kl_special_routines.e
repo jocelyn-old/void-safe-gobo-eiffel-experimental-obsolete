@@ -113,4 +113,25 @@ feature -- Resizing
 			count_set: Result.count = n
 		end
 
+	resize_with_default (a_default: G; an_array: SPECIAL [G]; n: INTEGER): SPECIAL [G] is
+			-- Resize `an_array' so that it contains `n' items.
+			-- Do not lose any previously entered items.
+			-- Note: the returned special object might be `an_array'
+			-- or a newly created special object where items from
+			-- `an_array' have been copied to.
+		require
+			an_array_not_void: an_array /= Void
+			n_large_enough: n >= an_array.count
+		do
+			if n > an_array.count then
+				Result := an_array.aliased_resized_area_with_default (a_default, n)
+			else
+				Result := an_array
+			end
+		ensure
+			special_not_void: Result /= Void
+			count_set: Result.count = n
+		end
+
+
 end

@@ -401,7 +401,7 @@ feature -- Output
 				a_file.put_line ("%T%Tend")
 				a_file.put_line ("%Tend")
 			end
-			a_file.put_line ("%Tyyvs.put (yyval, yyvsp)")
+			a_file.put_line ("%Tyyvs.force (yyval, yyvsp)")
 			a_file.put_line ("end")
 		end
 

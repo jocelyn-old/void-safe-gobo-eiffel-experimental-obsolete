@@ -57,7 +57,7 @@ feature {NONE} -- Implementation
 			-- Create `item_storage'.
 		do
 			create special_item_routines
-			item_storage := special_item_routines.make (n - 1)
+			item_storage := special_item_routines.make (n)
 		end
 
 	item_storage_put (v: G; i: INTEGER) is
@@ -128,7 +128,7 @@ feature {NONE} -- Implementation
 	clashes_resize (n: INTEGER) is
 			-- Resize `clashes'.
 		do
-			clashes := SPECIAL_INTEGER_.resize (clashes, n)
+			clashes := SPECIAL_INTEGER_.resize_with_default (0, clashes, n)
 		end
 
 	clashes_wipe_out is

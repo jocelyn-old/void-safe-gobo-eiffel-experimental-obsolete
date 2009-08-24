@@ -138,7 +138,7 @@ feature {NONE} -- Implementation
 					yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 					yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 				end
-				yyvs1.put (last_any_value, yyvsp1)
+				yyvs1.force (last_any_value, yyvsp1)
 			when 2 then
 				yyvsp2 := yyvsp2 + 1
 				if yyvsp2 >= yyvsc2 then
@@ -148,7 +148,7 @@ feature {NONE} -- Implementation
 					yyvsc2 := yyvsc2 + yyInitial_yyvs_size
 					yyvs2 := yyspecial_routines2.resize (yyvs2, yyvsc2)
 				end
-				yyvs2.put (last_et_identifier_value, yyvsp2)
+				yyvs2.force (last_et_identifier_value, yyvsp2)
 			else
 				debug ("GEYACC")
 					std.error.put_string ("Error in parser: not a token type: ")
@@ -173,7 +173,7 @@ feature {NONE} -- Implementation
 				yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 				yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 			end
-			yyvs1.put (yyval1, yyvsp1)
+			yyvs1.force (yyval1, yyvsp1)
 		end
 
 	yy_pop_last_value (yystate: INTEGER) is
@@ -244,7 +244,7 @@ if yy_parsing_status >= yyContinue then
 	yyvsp2 := yyvsp2 -4
 	yyvsp4 := yyvsp4 -1
 	yyvsp7 := yyvsp7 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 2 then
 --|#line 66 "et_lace_parser.y"
@@ -263,7 +263,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc2 := yyvsc2 + yyInitial_yyvs_size
 		yyvs2 := yyspecial_routines2.resize (yyvs2, yyvsc2)
 	end
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 3 then
 --|#line 68 "et_lace_parser.y"
@@ -275,7 +275,7 @@ yyval2 := yyvs2.item (yyvsp2)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 4 then
 --|#line 72 "et_lace_parser.y"
@@ -294,7 +294,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc2 := yyvsc2 + yyInitial_yyvs_size
 		yyvs2 := yyspecial_routines2.resize (yyvs2, yyvsc2)
 	end
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 5 then
 --|#line 74 "et_lace_parser.y"
@@ -306,7 +306,7 @@ yyval2 := yyvs2.item (yyvsp2)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 6 then
 --|#line 78 "et_lace_parser.y"
@@ -317,7 +317,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 7 then
 --|#line 79 "et_lace_parser.y"
@@ -329,7 +329,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 8 then
 --|#line 82 "et_lace_parser.y"
@@ -348,7 +348,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 9 then
 --|#line 83 "et_lace_parser.y"
@@ -359,7 +359,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 10 then
 --|#line 86 "et_lace_parser.y"
@@ -371,7 +371,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 11 then
 --|#line 87 "et_lace_parser.y"
@@ -383,7 +383,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 12 then
 --|#line 90 "et_lace_parser.y"
@@ -396,7 +396,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 13 then
 --|#line 92 "et_lace_parser.y"
@@ -409,7 +409,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 14 then
 --|#line 96 "et_lace_parser.y"
@@ -428,7 +428,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 15 then
 --|#line 97 "et_lace_parser.y"
@@ -439,7 +439,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 16 then
 --|#line 100 "et_lace_parser.y"
@@ -458,7 +458,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 17 then
 --|#line 101 "et_lace_parser.y"
@@ -469,7 +469,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 18 then
 --|#line 104 "et_lace_parser.y"
@@ -488,7 +488,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 19 then
 --|#line 106 "et_lace_parser.y"
@@ -508,7 +508,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 20 then
 --|#line 108 "et_lace_parser.y"
@@ -520,7 +520,7 @@ yyval4 := yyvs4.item (yyvsp4)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 21 then
 --|#line 112 "et_lace_parser.y"
@@ -540,7 +540,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 22 then
 --|#line 114 "et_lace_parser.y"
@@ -564,7 +564,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 23 then
 --|#line 121 "et_lace_parser.y"
@@ -577,7 +577,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp3 := yyvsp3 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 24 then
 --|#line 123 "et_lace_parser.y"
@@ -594,7 +594,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp3 := yyvsp3 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 25 then
 --|#line 132 "et_lace_parser.y"
@@ -606,7 +606,7 @@ yyval3 := yyvs3.item (yyvsp3); yyval3.set_abstract (True)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 26 then
 --|#line 134 "et_lace_parser.y"
@@ -618,7 +618,7 @@ yyval3 := yyvs3.item (yyvsp3); yyval3.set_recursive (True)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 27 then
 --|#line 136 "et_lace_parser.y"
@@ -633,7 +633,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 28 then
 --|#line 142 "et_lace_parser.y"
@@ -644,7 +644,7 @@ end
 yyval3 := yyvs3.item (yyvsp3) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 29 then
 --|#line 146 "et_lace_parser.y"
@@ -667,7 +667,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 30 then
 --|#line 150 "et_lace_parser.y"
@@ -691,7 +691,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 31 then
 --|#line 155 "et_lace_parser.y"
@@ -716,7 +716,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 32 then
 --|#line 163 "et_lace_parser.y"
@@ -742,7 +742,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 33 then
 --|#line 169 "et_lace_parser.y"
@@ -767,7 +767,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 34 then
 --|#line 177 "et_lace_parser.y"
@@ -791,7 +791,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc3 := yyvsc3 + yyInitial_yyvs_size
 		yyvs3 := yyspecial_routines3.resize (yyvs3, yyvsc3)
 	end
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 35 then
 --|#line 184 "et_lace_parser.y"
@@ -810,7 +810,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 36 then
 --|#line 185 "et_lace_parser.y"
@@ -821,7 +821,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 37 then
 --|#line 188 "et_lace_parser.y"
@@ -840,7 +840,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 38 then
 --|#line 189 "et_lace_parser.y"
@@ -851,7 +851,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 39 then
 --|#line 192 "et_lace_parser.y"
@@ -870,7 +870,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 40 then
 --|#line 194 "et_lace_parser.y"
@@ -890,7 +890,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 41 then
 --|#line 196 "et_lace_parser.y"
@@ -902,7 +902,7 @@ yyval4 := yyvs4.item (yyvsp4)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -3
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 42 then
 --|#line 200 "et_lace_parser.y"
@@ -922,7 +922,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc4 := yyvsc4 + yyInitial_yyvs_size
 		yyvs4 := yyspecial_routines4.resize (yyvs4, yyvsc4)
 	end
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 43 then
 --|#line 202 "et_lace_parser.y"
@@ -935,7 +935,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp3 := yyvsp3 -1
-	yyvs4.put (yyval4, yyvsp4)
+	yyvs4.force (yyval4, yyvsp4)
 end
 when 44 then
 --|#line 206 "et_lace_parser.y"
@@ -947,7 +947,7 @@ yyval3 := yyvs3.item (yyvsp3); yyval3.set_abstract (True)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 45 then
 --|#line 208 "et_lace_parser.y"
@@ -958,7 +958,7 @@ end
 yyval3 := yyvs3.item (yyvsp3) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs3.put (yyval3, yyvsp3)
+	yyvs3.force (yyval3, yyvsp3)
 end
 when 46 then
 --|#line 212 "et_lace_parser.y"
@@ -977,7 +977,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 47 then
 --|#line 214 "et_lace_parser.y"
@@ -989,7 +989,7 @@ yyval5 := yyvs5.item (yyvsp5)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 5
 	yyvsp1 := yyvsp1 -4
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 48 then
 --|#line 216 "et_lace_parser.y"
@@ -1009,7 +1009,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 49 then
 --|#line 218 "et_lace_parser.y"
@@ -1029,7 +1029,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 50 then
 --|#line 220 "et_lace_parser.y"
@@ -1049,7 +1049,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 51 then
 --|#line 224 "et_lace_parser.y"
@@ -1069,7 +1069,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 52 then
 --|#line 225 "et_lace_parser.y"
@@ -1081,7 +1081,7 @@ yyval5 := yyvs5.item (yyvsp5)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 53 then
 --|#line 227 "et_lace_parser.y"
@@ -1093,7 +1093,7 @@ yyval5 := yyvs5.item (yyvsp5)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 54 then
 --|#line 231 "et_lace_parser.y"
@@ -1113,7 +1113,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc5 := yyvsc5 + yyInitial_yyvs_size
 		yyvs5 := yyspecial_routines5.resize (yyvs5, yyvsc5)
 	end
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 55 then
 --|#line 233 "et_lace_parser.y"
@@ -1126,7 +1126,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -1
-	yyvs5.put (yyval5, yyvsp5)
+	yyvs5.force (yyval5, yyvsp5)
 end
 when 56 then
 --|#line 237 "et_lace_parser.y"
@@ -1137,7 +1137,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 57 then
 --|#line 238 "et_lace_parser.y"
@@ -1149,7 +1149,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 58 then
 --|#line 241 "et_lace_parser.y"
@@ -1168,7 +1168,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 59 then
 --|#line 242 "et_lace_parser.y"
@@ -1179,7 +1179,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 60 then
 --|#line 245 "et_lace_parser.y"
@@ -1191,7 +1191,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 61 then
 --|#line 246 "et_lace_parser.y"
@@ -1203,7 +1203,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 62 then
 --|#line 249 "et_lace_parser.y"
@@ -1216,7 +1216,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -3
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 63 then
 --|#line 250 "et_lace_parser.y"
@@ -1229,7 +1229,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 6
 	yyvsp1 := yyvsp1 -3
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 64 then
 --|#line 254 "et_lace_parser.y"
@@ -1249,7 +1249,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 65 then
 --|#line 255 "et_lace_parser.y"
@@ -1262,7 +1262,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 66 then
 --|#line 258 "et_lace_parser.y"
@@ -1281,7 +1281,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 67 then
 --|#line 259 "et_lace_parser.y"
@@ -1292,7 +1292,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 68 then
 --|#line 262 "et_lace_parser.y"
@@ -1311,7 +1311,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 69 then
 --|#line 263 "et_lace_parser.y"
@@ -1322,7 +1322,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 70 then
 --|#line 266 "et_lace_parser.y"
@@ -1333,7 +1333,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 71 then
 --|#line 267 "et_lace_parser.y"
@@ -1345,7 +1345,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 72 then
 --|#line 270 "et_lace_parser.y"
@@ -1364,7 +1364,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 73 then
 --|#line 271 "et_lace_parser.y"
@@ -1375,7 +1375,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 74 then
 --|#line 274 "et_lace_parser.y"
@@ -1387,7 +1387,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 75 then
 --|#line 275 "et_lace_parser.y"
@@ -1399,7 +1399,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 76 then
 --|#line 276 "et_lace_parser.y"
@@ -1411,7 +1411,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 77 then
 --|#line 279 "et_lace_parser.y"
@@ -1431,7 +1431,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 78 then
 --|#line 280 "et_lace_parser.y"
@@ -1443,7 +1443,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp2 := yyvsp2 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 79 then
 --|#line 283 "et_lace_parser.y"
@@ -1462,7 +1462,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 80 then
 --|#line 284 "et_lace_parser.y"
@@ -1473,7 +1473,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 81 then
 --|#line 287 "et_lace_parser.y"
@@ -1492,7 +1492,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc7 := yyvsc7 + yyInitial_yyvs_size
 		yyvs7 := yyspecial_routines7.resize (yyvs7, yyvsc7)
 	end
-	yyvs7.put (yyval7, yyvsp7)
+	yyvs7.force (yyval7, yyvsp7)
 end
 when 82 then
 --|#line 289 "et_lace_parser.y"
@@ -1512,7 +1512,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc7 := yyvsc7 + yyInitial_yyvs_size
 		yyvs7 := yyspecial_routines7.resize (yyvs7, yyvsc7)
 	end
-	yyvs7.put (yyval7, yyvsp7)
+	yyvs7.force (yyval7, yyvsp7)
 end
 when 83 then
 --|#line 291 "et_lace_parser.y"
@@ -1524,7 +1524,7 @@ yyval7 := yyvs7.item (yyvsp7)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs7.put (yyval7, yyvsp7)
+	yyvs7.force (yyval7, yyvsp7)
 end
 when 84 then
 --|#line 295 "et_lace_parser.y"
@@ -1544,7 +1544,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc7 := yyvsc7 + yyInitial_yyvs_size
 		yyvs7 := yyspecial_routines7.resize (yyvs7, yyvsc7)
 	end
-	yyvs7.put (yyval7, yyvsp7)
+	yyvs7.force (yyval7, yyvsp7)
 end
 when 85 then
 --|#line 297 "et_lace_parser.y"
@@ -1559,7 +1559,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -1
 	yyvsp6 := yyvsp6 -1
-	yyvs7.put (yyval7, yyvsp7)
+	yyvs7.force (yyval7, yyvsp7)
 end
 when 86 then
 --|#line 304 "et_lace_parser.y"
@@ -1582,7 +1582,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc6 := yyvsc6 + yyInitial_yyvs_size
 		yyvs6 := yyspecial_routines6.resize (yyvs6, yyvsc6)
 	end
-	yyvs6.put (yyval6, yyvsp6)
+	yyvs6.force (yyval6, yyvsp6)
 end
 when 87 then
 --|#line 309 "et_lace_parser.y"
@@ -1605,7 +1605,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc6 := yyvsc6 + yyInitial_yyvs_size
 		yyvs6 := yyspecial_routines6.resize (yyvs6, yyvsc6)
 	end
-	yyvs6.put (yyval6, yyvsp6)
+	yyvs6.force (yyval6, yyvsp6)
 end
 when 88 then
 --|#line 316 "et_lace_parser.y"
@@ -1624,7 +1624,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc2 := yyvsc2 + yyInitial_yyvs_size
 		yyvs2 := yyspecial_routines2.resize (yyvs2, yyvsc2)
 	end
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 89 then
 --|#line 318 "et_lace_parser.y"
@@ -1636,7 +1636,7 @@ yyval2 := yyvs2.item (yyvsp2)
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 90 then
 --|#line 322 "et_lace_parser.y"
@@ -1655,7 +1655,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 91 then
 --|#line 323 "et_lace_parser.y"
@@ -1666,7 +1666,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 92 then
 --|#line 326 "et_lace_parser.y"
@@ -1685,7 +1685,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 93 then
 --|#line 327 "et_lace_parser.y"
@@ -1696,7 +1696,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 94 then
 --|#line 330 "et_lace_parser.y"
@@ -1715,7 +1715,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 95 then
 --|#line 331 "et_lace_parser.y"
@@ -1726,7 +1726,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 96 then
 --|#line 332 "et_lace_parser.y"
@@ -1738,7 +1738,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 97 then
 --|#line 335 "et_lace_parser.y"
@@ -1750,7 +1750,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 98 then
 --|#line 336 "et_lace_parser.y"
@@ -1762,7 +1762,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp1 := yyvsp1 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 99 then
 --|#line 339 "et_lace_parser.y"
@@ -1782,7 +1782,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 100 then
 --|#line 340 "et_lace_parser.y"
@@ -1795,7 +1795,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 101 then
 --|#line 341 "et_lace_parser.y"
@@ -1808,7 +1808,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 4
 	yyvsp1 := yyvsp1 -1
 	yyvsp2 := yyvsp2 -2
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 102 then
 --|#line 344 "et_lace_parser.y"
@@ -1823,7 +1823,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
 	yyvsp1 := yyvsp1 -1
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 103 then
 --|#line 349 "et_lace_parser.y"
@@ -1838,7 +1838,7 @@ if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 3
 	yyvsp2 := yyvsp2 -1
 	yyvsp1 := yyvsp1 -1
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 104 then
 --|#line 356 "et_lace_parser.y"
@@ -1857,7 +1857,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 105 then
 --|#line 357 "et_lace_parser.y"
@@ -1868,7 +1868,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 106 then
 --|#line 360 "et_lace_parser.y"
@@ -1887,7 +1887,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 107 then
 --|#line 361 "et_lace_parser.y"
@@ -1898,7 +1898,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 108 then
 --|#line 364 "et_lace_parser.y"
@@ -1917,7 +1917,7 @@ if yy_parsing_status >= yyContinue then
 		yyvsc1 := yyvsc1 + yyInitial_yyvs_size
 		yyvs1 := yyspecial_routines1.resize (yyvs1, yyvsc1)
 	end
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 109 then
 --|#line 365 "et_lace_parser.y"
@@ -1928,7 +1928,7 @@ end
 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 110 then
 --|#line 366 "et_lace_parser.y"
@@ -1940,7 +1940,7 @@ end
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 2
 	yyvsp1 := yyvsp1 -1
-	yyvs1.put (yyval1, yyvsp1)
+	yyvs1.force (yyval1, yyvsp1)
 end
 when 111 then
 --|#line 369 "et_lace_parser.y"
@@ -1951,7 +1951,7 @@ end
 yyval2 := yyvs2.item (yyvsp2) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 when 112 then
 --|#line 371 "et_lace_parser.y"
@@ -1962,7 +1962,7 @@ end
 yyval2 := yyvs2.item (yyvsp2) 
 if yy_parsing_status >= yyContinue then
 	yyssp := yyssp - 1
-	yyvs2.put (yyval2, yyvsp2)
+	yyvs2.force (yyval2, yyvsp2)
 end
 			else
 				debug ("GEYACC")
