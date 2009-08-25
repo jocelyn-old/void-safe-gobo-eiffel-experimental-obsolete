@@ -966,7 +966,7 @@ feature {NONE} -- NEW SPECIAL: Implementation
 				ht_deleted_position := a_excluded_position
 			else
 				from
-					i := 1
+					i := 0
 				until
 					i >= modulus or done
 				loop
