@@ -29590,7 +29590,7 @@ feature -- Parsing
 						std.error.put_integer (yystate)
 						std.error.put_character ('%N')
 					end
-					yyss.put (yystate, yyssp)
+					yyss.force (yystate, yyssp)
 						-- Do appropriate processing given the current state.
 						-- Read a lookahead token if one is needed.
 					yyn := yypact.item (yystate)
