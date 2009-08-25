@@ -413,6 +413,7 @@ feature -- Removal
 				count := 0
 			end
 			position := No_position
+			ht_deleted_position := 0
 		end
 
 feature -- Resizing
@@ -449,8 +450,8 @@ feature -- Resizing
 				end
 				i := i - 1
 			end
-			item_storage_resize (n + 1)
-			key_storage_resize (n + 1)
+			item_storage_resize (n)
+			key_storage_resize (n)
 			clashes_resize (n + 1)
 			capacity := n
 			position := No_position
@@ -696,58 +697,51 @@ feature {NONE} -- Implementation
 			h: INTEGER
 			a_tester: like key_equality_tester
 		do
-			if i /= position then
-				k := key_storage_item (i)
-				h := hash_position (k)
-				if slots_item (h) = i then
-					position := i
-					slots_position := h
-					clashes_previous_position := No_position
-				else
-					a_tester := key_equality_tester
-					internal_set_key_equality_tester (Void)
-					search_position (k)
-					internal_set_key_equality_tester (a_tester)
+			if count = 1 then
+				wipe_out
+			else
+				if i /= position then
+					k := key_storage_item (i)
+					h := hash_position (k)
+					if slots_item (h) = i then
+						position := i
+						slots_position := h
+						clashes_previous_position := No_position
+					else
+						a_tester := key_equality_tester
+						internal_set_key_equality_tester (Void)
+						search_position (k)
+						internal_set_key_equality_tester (a_tester)
+					end
 				end
-			end
-			move_cursors_forth (position)
-			if clashes_previous_position = No_position then
-				slots_put (clashes_item (position), slots_position)
-			else
-				clashes_put (clashes_item (position), clashes_previous_position)
-			end
+				move_cursors_forth (position)
+				if clashes_previous_position = No_position then
+					slots_put (clashes_item (position), slots_position)
+				else
+					clashes_put (clashes_item (position), clashes_previous_position)
+				end
 
+				if ht_deleted_position = position or ht_deleted_position = 0 then
+					get_new_ht_deleted_values (position)
+				end
+				if ht_deleted_position > 0 then
+					if ht_deleted_position /= position then
+						key_storage_put (ht_deleted_key, position)
+						item_storage_put (ht_deleted_item, position)
+					end
+				else
+					check False end
+				end
 
-			if ht_deleted_position = position or ht_deleted_position = 0 then
-				get_new_ht_deleted_values (position)
+				if free_slot = No_position and position = last_position then
+					last_position := last_position - 1
+					clashes_put (No_position, position)
+				else
+					clashes_put (Free_offset - free_slot, position)
+					free_slot := position
+				end
+				count := count - 1
 			end
-			if ht_deleted_position > 0 then
-				key_storage_put (ht_deleted_key, position)
-				item_storage_put (ht_deleted_item, position)
-			else
-				check False end
-			end
-
---			if {l_ht_deleted_key: K} ht_deleted_key then
---				key_storage_put (l_ht_deleted_key, position)
---			else
---				ht_deleted_key := key_storage_item (position)
---			end
-
---			if {l_ht_deleted_item: G} ht_deleted_item then
---				item_storage_put (l_ht_deleted_item, position)
---			else
---				ht_deleted_item := item_storage_item (position)
---			end
-
-			if free_slot = No_position and position = last_position then
-				last_position := last_position - 1
-				clashes_put (No_position, position)
-			else
-				clashes_put (Free_offset - free_slot, position)
-				free_slot := position
-			end
-			count := count - 1
 		ensure
 			one_less: count = old count - 1
 		end
@@ -968,20 +962,24 @@ feature {NONE} -- NEW SPECIAL: Implementation
 			end
 
 			ht_deleted_position := 0
-			from
-				i := 1
-			until
-				i >= modulus or done
-			loop
-				p := slots_item (i)
-				if p > 0 and p /= a_excluded_position then
-					ht_deleted_position := p
-					done := True
+			if count = 1 then
+				ht_deleted_position := a_excluded_position
+			else
+				from
+					i := 1
+				until
+					i >= modulus or done
+				loop
+					p := slots_item (i)
+					if p > 0 and p /= a_excluded_position then
+						ht_deleted_position := p
+						done := True
+					end
+					i := i + 1
 				end
-				i := i + 1
 			end
 
-			if old_deleted_position > 0 then
+			if old_deleted_position > 0 and ht_deleted_position > 0 then
 					--| Replace all previous deleted marks with new deleted marks
 				old_free_slot := free_slot
 				from

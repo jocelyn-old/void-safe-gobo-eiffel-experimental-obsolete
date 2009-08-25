@@ -32,8 +32,8 @@ feature {NONE} -- Initialization
 			-- Create new mapping between upper- and lower-case characters.
 			-- Each character is its own upper- and lower-case version by default.
 		do
-			lower_table := SPECIAL_INTEGER_.make (256)
-			flip_table := SPECIAL_INTEGER_.make (256)
+			lower_table := SPECIAL_INTEGER_.make_filled (0, 256)
+			flip_table := SPECIAL_INTEGER_.make_filled (0, 256)
 			clear
 		end
 

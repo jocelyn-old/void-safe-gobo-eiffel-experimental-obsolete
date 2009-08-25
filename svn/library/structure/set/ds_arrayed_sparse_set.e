@@ -178,7 +178,7 @@ feature {NONE} -- Implementation
 	slots_resize (n: INTEGER) is
 			-- Resize `slots'.
 		do
-			slots := SPECIAL_INTEGER_.resize (slots, n)
+			slots := SPECIAL_INTEGER_.resize_with_default (0, slots, n)
 		end
 
 	slots_wipe_out is

@@ -29,7 +29,7 @@ feature {ANY} -- Initialization
 	make_empty is
 			-- Create an empty character set.
 		do
-			set := SPECIAL_BOOLEAN_.make (256)
+			set := SPECIAL_BOOLEAN_.make_filled (False, 256)
 		ensure
 			is_empty: is_empty
 		end

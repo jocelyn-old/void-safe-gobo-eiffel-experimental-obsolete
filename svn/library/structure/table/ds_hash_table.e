@@ -32,11 +32,6 @@ create
 
 feature -- Access
 
-	data: like Current is
-		do
-			Result := Current
-		end
-
 	new_cursor: DS_HASH_TABLE_CURSOR [G, K] is
 			-- New external cursor for traversal
 		do

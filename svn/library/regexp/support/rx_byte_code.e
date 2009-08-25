@@ -32,10 +32,10 @@ feature {NONE} -- Initialization
 		do
 			count := 0
 			capacity := nb
-			byte_code := SPECIAL_INTEGER_.make (nb)
+			byte_code := SPECIAL_INTEGER_.make_filled (0, nb)
 			character_sets_count := 0
 			character_sets_capacity := nb
-			character_sets := SPECIAL_BOOLEAN_.make (nb)
+			character_sets := SPECIAL_BOOLEAN_.make_filled (False, nb)
 		ensure
 			is_empty: count = 0
 			capacity_set: capacity = nb
@@ -328,7 +328,7 @@ feature {NONE} -- Resizing
 		do
 			if capacity < nb then
 				new_capacity := 2 * nb
-				byte_code := SPECIAL_INTEGER_.resize (byte_code, new_capacity)
+				byte_code := SPECIAL_INTEGER_.resize_with_default (0, byte_code, new_capacity)
 				capacity := new_capacity
 			end
 		ensure
@@ -342,7 +342,7 @@ feature {NONE} -- Resizing
 		do
 			if character_sets_capacity < nb then
 				new_capacity := 2 * nb
-				character_sets := SPECIAL_BOOLEAN_.resize (character_sets, new_capacity)
+				character_sets := SPECIAL_BOOLEAN_.resize_with_default (False, character_sets, new_capacity)
 				character_sets_capacity := new_capacity
 			end
 		ensure

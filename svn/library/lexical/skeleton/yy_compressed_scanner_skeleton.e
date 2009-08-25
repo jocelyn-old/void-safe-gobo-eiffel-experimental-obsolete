@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 			column := 1
 			position := 1
 			if yyReject_or_variable_trail_context then
-				yy_state_stack := SPECIAL_INTEGER_.make (input_buffer.content.count + 1)
+				yy_state_stack := SPECIAL_INTEGER_.make_filled (0, input_buffer.content.count + 1)
 			end
 		end
 
@@ -456,7 +456,7 @@ feature {NONE} -- Implementation
 				check l_yy_state_stack /= Void end -- implied by `yyReject_or_variable_trail_context'
 				nb := a_content.count + 1
 				if l_yy_state_stack.count < nb then
-					yy_state_stack := SPECIAL_INTEGER_.resize (l_yy_state_stack, nb)
+					yy_state_stack := SPECIAL_INTEGER_.resize_with_default (0, l_yy_state_stack, nb)
 				end
 			end
 		end
