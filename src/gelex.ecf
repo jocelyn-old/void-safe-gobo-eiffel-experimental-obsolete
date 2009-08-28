@@ -22,11 +22,11 @@
 		<setting name="multithreaded" value="false"/>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
 		<library name="gobo_argument" location="..\gobo_argument.ecf"/>
-		<library name="gobo_kernel" location="..\gobo_kernel.ecf"/>
+		<library name="gobo_kernel" location="..\gobo_kernel.ecf" />
 		<library name="gobo_lexical" location="..\gobo_lexical.ecf"/>
 		<library name="gobo_pattern" location="..\gobo_pattern.ecf"/>
-		<library name="gobo_structure" location="..\gobo_structure.ecf"/>
-		<library name="gobo_utility" location="..\gobo_utility.ecf"/>
+		<library name="gobo_structure" location="..\gobo_structure.ecf" />
+		<library name="gobo_utility" location="..\gobo_utility.ecf" />
 		<cluster name="gelex" location="..\svn\src\gelex\" recursive="true"/>
 	</target>
 </system>

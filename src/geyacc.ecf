@@ -22,8 +22,8 @@
 		<setting name="multithreaded" value="false"/>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
 		<library name="gobo_kernel" location="..\gobo_kernel.ecf"/>
-		<library name="gobo_parse" location="..\gobo_parse.ecf"/>
-		<library name="gobo_structure" location="..\gobo_structure.ecf"/>
+		<library name="gobo_parse" location="..\gobo_parse.ecf" />
+		<library name="gobo_structure" location="..\gobo_structure.ecf" />
 		<library name="gobo_utility" location="..\gobo_utility.ecf"/>
 		<cluster name="geyacc" location="..\svn\src\geyacc\"/>
 	</target>

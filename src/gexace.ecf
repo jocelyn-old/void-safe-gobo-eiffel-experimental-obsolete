@@ -22,10 +22,10 @@
 		<setting name="msil_generation_type" value="exe"/>
 		<setting name="multithreaded" value="false"/>
 		<library name="base" location="$ISE_LIBRARY\library\base\base.ecf"/>
-		<library name="gobo_kernel" location="..\gobo_kernel.ecf"/>
-		<library name="gobo_structure" location="..\gobo_structure.ecf"/>
-		<library name="gobo_tools" location="..\gobo_tools.ecf"/>
-		<library name="gobo_utility" location="..\gobo_utility.ecf"/>
+		<library name="gobo_kernel" location="..\gobo_kernel.ecf" />
+		<library name="gobo_structure" location="..\gobo_structure.ecf" />
+		<library name="gobo_tools" location="..\gobo_tools.ecf" />
+		<library name="gobo_utility" location="..\gobo_utility.ecf" />
 		<library name="gobo_xml" location="..\gobo_xml.ecf"/>
 		<cluster name="gexace" location="..\svn\src\gexace\"/>
 	</target>
