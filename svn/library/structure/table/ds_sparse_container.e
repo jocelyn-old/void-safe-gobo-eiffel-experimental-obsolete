@@ -51,8 +51,6 @@ feature {NONE} -- Initialization
 			position := No_position
 			unset_found_item
 			set_internal_cursor (new_cursor)
---			ht_deleted_item := l_default_item
---			ht_deleted_key := l_default_key
 		ensure
 			empty: is_empty
 			capacity_set: capacity = n
@@ -493,15 +491,6 @@ feature -- Optimization
 				key_storage_keep_head (j)
 				ht_deleted_position := 0
 
---				from
---					j := j + 1
---				until
---					j > nb
---				loop
---					item_storage_put_default (j)
---					key_storage_put_default (j)
---					j := j + 1
---				end
 				clashes_wipe_out
 				slots_wipe_out
 				nb := count
