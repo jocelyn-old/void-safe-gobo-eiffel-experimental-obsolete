@@ -7,8 +7,8 @@ indexing
 	library: "Gobo Eiffel Structure Library"
 	copyright: "Copyright (c) 2009, Daniel Tuser and others"
 	license: "MIT License"
-	date: "$Date: 2008-09-28 20:40:54 +0200 (Sun, 28 Sep 2008) $"
-	revision: "$Revision: 6526 $"
+	date: "$Date: 2009-08-19 18:31:19 +0200 (Wed, 19 Aug 2009) $"
+	revision: "$Revision: 6662 $"
 
 deferred class DS_AVL_TREE_CONTAINER_CURSOR [G, K]
 
